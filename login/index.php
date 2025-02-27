@@ -89,6 +89,7 @@ if (isset($_POST['submit'])) {
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../src/css/login_signup.css">
+    <link rel="stylesheet" href="../src/css/root.css">
 </head>
 
 <div class="form-container">
@@ -97,25 +98,70 @@ if (isset($_POST['submit'])) {
 
     <form method="post" action="">
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required maxlength="30">
+            <div class="input-wrapper">
+                <span class="icon">
+                    <i class="fas fa-user"></i>
+                </span>
+                <input type="text" id="username" name="username" required maxlength="30" placeholder="Username">
+                <label for="username">Username</label>
+            </div>
             <small id="username-error" style="color: red;"></small>
         </div>
+
         <div class="form-group">
-            <label for="password">Password</label>
-            <div class="password-container">
-                <input type="password" id="password" name="password" required maxlength="255">
-                <button type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></button>
+            <div class="input-wrapper">
+                <div class="password-container">
+                    <span class="icon">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" id="password" name="password" required maxlength="255">
+                    <label for="password">Password</label>
+                    <button type="button" id="toggle-password" class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
             </div>
         </div>
+
+        <!-- <div class="form-group">
+            <div class="password-container">
+                <span class="icon">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <input type="password" id="password" name="password" required maxlength="255">
+                <label for="password">Password</label>
+                <button type="button" id="toggle-password" class="password-toggle">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+        </div> -->
+
+
+        <!-- <div class="form-group">
+            <div class="password-container">
+                <input type="password" id="password" name="password" required maxlength="255">
+                <label for="password">Password</label>
+                <button type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></button>
+            </div>
+        </div> -->
+
+        <!-- <div class="form-group">
+            <button type="submit" name="submit" id="submit" disabled>
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </div> -->
         <div class="form-group">
             <button type="submit" name="submit" id="submit" disabled>Login</button>
         </div>
+
+        <div class="text-center">
+            <p>Don't have an account? <a href="../signup/">Sign Up</a></p>
+        </div>
     </form>
 
-    <div class="text-center">
+    <!-- <div class="text-center">
         <p>Don't have an account? <a href="../signup/">Sign Up</a></p>
-    </div>
+    </div> -->
 
 </div>
 
