@@ -75,45 +75,82 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../src/css/login_signup.css">
+    <link rel="stylesheet" href="../src/css/root.css">
 </head>
 
 <body>
     <div class="form-container">
         <h1>Sign Up</h1>
         <form id="signupForm" method="post" action="">
+            <!-- First Name -->
             <div class="form-group">
-                <label for="first_name">First Name</label>
-                <input type="text" id="first_name" name="first_name" required maxlength="30">
-            </div>
-            <div class="form-group">
-                <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name" required maxlength="30">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required maxlength="100">
-                <p id="email-message"></p>
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required maxlength="30">
-                <p id="username-message"></p>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <div class="password-container">
-                    <input type="password" id="password" name="password" required maxlength="255">
-                    <button type="button" id="toggle-password" class="password-toggle"><i
-                            class="fas fa-eye"></i></button>
+                <div class="input-wrapper">
+                    <span class="icon">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <input type="text" id="first_name" name="first_name" required maxlength="30">
+                    <label for="first_name">First Name</label>
                 </div>
             </div>
+            <!-- Last Name -->
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <span class="icon">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <input type="text" id="last_name" name="last_name" required maxlength="30">
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <span class="icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+                    <input type="email" id="email" name="email" required maxlength="100">
+                    <label for="email">Email</label>
+                    <p id="email-message"></p>
+                </div>
+            </div>
+            <!-- Username -->
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <span class="icon">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <input type="text" id="username" name="username" required maxlength="30">
+                    <label for="username">Username</label>
+                    <p id="username-message"></p>
+                </div>
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <div class="password-container">
+                        <span class="icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" id="password" name="password" required maxlength="255">
+                        <label for="password">Password</label>
+                        <button type="button" id="toggle-password" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Button -->
             <div class="form-group">
                 <button type="submit" id="submit">Sign Up</button>
             </div>
+
+            <div class="text-center">
+                <p>Already have an account? <a href="../login/">Login</a></p>
+            </div>
         </form>
-        <div class="text-center">
+        <!-- <div class="text-center">
             <p>Already have an account? <a href="../login/">Login</a></p>
-        </div>
+        </div> -->
     </div>
 
     <script src="../src/js/sweetalert2.js"></script>
