@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
         <script>
             window.onload = function() {
                 Swal.fire({
-                    position: 'top-end',
+                    position: 'center',
                     icon: 'success',
                     title: 'Login successful',
                     showConfirmButton: false,
@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
         <script>
             window.onload = function() {
                 Swal.fire({
-                    position: 'top-end',
+                    position: 'center',
                     icon: 'error',
                     title: 'Incorrect information',
                     text: 'Login or password is incorrect',
