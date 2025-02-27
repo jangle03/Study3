@@ -1,0 +1,37 @@
+:root{
+    :root {
+        /* Các màu chính */
+        --border-primary: #dadce0;
+        --background-primary: #fff;
+        --box-shadow-primary: rgba(0, 0, 0, 0.1);
+
+        /* Màu xanh dương chính */
+        --blue-primary: #007bff;
+        --blue-dark: #0056b3;
+        --blue-light: #66b3ff;
+        --blue-sky: #87ceeb;
+        --blue-deep: #003366;
+      
+        /* Các sắc thái xanh dương mở rộng */
+        --blue-ocean: #1e90ff;
+        --blue-royal: #4169e1;
+        --blue-midnight: #191970;
+        --blue-cobalt: #0047ab;
+        --blue-azure: #0080ff;
+      
+        /* Xanh dương pha tông khác */
+        --blue-teal: #008080;
+        --blue-cyan: #00aaff;
+        --blue-turquoise: #40e0d0;
+        --blue-indigo: #4b0082;
+        --blue-denim: #1560bd;
+      
+        /* Xanh dương dành cho nền & chữ */
+        --bg-blue-light: #e0f7ff;
+        --bg-blue-dark: #001f3f;
+        --text-blue-primary: #003366;
+        --text-blue-muted: #5a7690;
+        --border-blue: #3399ff;
+      }
+      
+}
