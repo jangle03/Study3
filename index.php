@@ -5,8 +5,13 @@ session_start();
 include './config.php';
 $query = new Database();
 
+// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+//     header("Location: ./login/");
+//     exit;
+// }
+
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: ./login/");
+    header("Location: ./introduce/");
     exit;
 }
 
