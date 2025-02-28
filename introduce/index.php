@@ -104,7 +104,7 @@
         <h3>Danh mục</h3>
         <ul>
             <li><a href="#">Trang chủ</a></li>
-            <li><a href="khoahoc.php">Khóa học</a></li>
+            <li><a href="course.php">Khóa học</a></li>
             <li><a href="#">Lịch thi</a></li>
             <li><a href="#">Tài liệu học tập</a></li>
             <li><a href="#">Sự kiện</a></li>
