@@ -1,7 +1,7 @@
 <?php include '../check.php'; ?>
 <?php include '../last_page.php';
 
-if ($_SESSION['username'] !== 'iqbolshoh') {
+if ($_SESSION['username'] !== 'admin') {
     header("Location: ../");
     exit;
 }
@@ -59,23 +59,27 @@ $user = $query->select('users');
 
     <div class="container">
         <h2 class="header-title">User List</h2>
-
+        <?php if ($_SESSION['username'] === 'admin'): ?>
+            <a href="them_tai_khoan.php" class="btn btn-primary mb-3">Add User</a>
+        <?php endif; ?>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>STT</th>
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Username</th>
                         <th>Profile Image</th>
                         <th>Created At</th>
+                        <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $stt = 1; ?>
                     <?php foreach ($user as $u): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($u['id']); ?></td>
+                            <td><?php echo $stt++; ?></td>
                             <td><?php echo htmlspecialchars($u['last_name'] . " " . $u['first_name']); ?></td>
                             <td><?php echo htmlspecialchars($u['email']); ?></td>
                             <td><?php echo htmlspecialchars($u['username']); ?></td>
@@ -83,6 +87,13 @@ $user = $query->select('users');
                                 <img src="../src/images/profile-image/<?php echo htmlspecialchars($u['profile_picture']); ?>" alt="Profile Image" class="profile-img">
                             </td>
                             <td><?php echo htmlspecialchars($u['created_at']); ?></td>
+                            <td>
+                                <a href="sua_tai_khoan.php?id=<?= $u['id'] ?>" class="btn btn-success">Sửa</a>
+                                <?php if ($u['username'] !== 'admin'): ?>
+                                    <a href="xoa_tai_khoan.php?id=<?= $u['id'] ?>" class="btn btn-danger">Xóa</a>
+                                <?php endif; ?>
+                            </td>
+
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
