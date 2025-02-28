@@ -5,8 +5,13 @@ session_start();
 include './config.php';
 $query = new Database();
 
+// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+//     header("Location: ./login/");
+//     exit;
+// }
+
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: ./login/");
+    header("Location: ./introduce/");
     exit;
 }
 
@@ -37,16 +42,16 @@ setcookie('last_page',  ".." . $_SERVER['SCRIPT_NAME'], time() + (86400 * 30), "
 </head>
 
 <body>
-
-    <header class="site-header">
+    <?php include './includes/header.php'; ?>
+    <!-- <header class="site-header">
         <a href="./" class="logo-link">
             <img src="./src/images/logo.png" alt="logo" class="logo-img">
         </a>
-    </header>
+    </header> -->
 
     <div class="container">
         <h1 class="main-heading">Welcome to the English Learning Portal</h1>
-        <div class="links">
+        <!-- <div class="links">
             <a href="dictionary/" class="link-item">
                 <i class="fas fa-language link-icon"></i>
                 <span class="link-text">Dictionary</span>
@@ -71,8 +76,8 @@ setcookie('last_page',  ".." . $_SERVER['SCRIPT_NAME'], time() + (86400 * 30), "
                 <i class="fa-solid fa-gear link-icon"></i>
                 <span class="link-text">Settings</span>
             </a>
-
-        </div>
+          
+        </div> -->
     </div>
 
     <footer>
