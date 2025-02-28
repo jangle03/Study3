@@ -43,7 +43,10 @@
             <i class="fas fa-brain"></i>
             <span>Exercise</span>
         </a>
-
+        <a href="../blog/" class="header-link">
+            <i class="fas fa-brain"></i>
+            <span>Post Blog</span>
+        </a>
         <a href="../settings/" class="header-link">
             <i class="fa-solid fa-gear"></i>
             <span>Settings</span>
@@ -58,6 +61,7 @@
             <li><a href="../sentences/"><i class="fas fa-comment-dots"></i> Sentences</a></li>
             <li><a href="../texts/"><i class="fas fa-book link-icon"></i>Texts</a></li>
             <li><a href="../exercise/"><i class="fas fa-brain"></i> Exercise</a></li>
+            <li><a href="../blog/"><i class="fas fa-brain"></i> Post blog</a></li>
             <li><a href="../settings/"><i class="fa-solid fa-gear"></i> Settings</a></li>
         </ul>
     </nav>

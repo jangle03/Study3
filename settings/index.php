@@ -29,7 +29,7 @@
                 <span>Profile</span>
             </a>
 
-            <?php if ($_SESSION['username'] == 'iqbolshoh') : ?>
+            <?php if ($_SESSION['username'] == 'admin') : ?>
                 <a href="users.php" class="link">
                     <i class="fa-solid fa-users-gear"></i>
                     <span>Users</span>
