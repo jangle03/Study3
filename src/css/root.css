@@ -1,9 +1,10 @@
 :root{
-    :root {
         /* Các màu chính */
         --border-primary: #dadce0;
         --background-primary: #fff;
         --box-shadow-primary: rgba(0, 0, 0, 0.1);
+        --error: red;
+        --icon: white;
 
         /* Màu xanh dương chính */
         --blue-primary: #007bff;
@@ -32,6 +33,5 @@
         --text-blue-primary: #003366;
         --text-blue-muted: #5a7690;
         --border-blue: #3399ff;
-      }
-      
 }
+      

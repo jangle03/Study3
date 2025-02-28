@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .justify-center {
     width: 100%;
     display: flex;
@@ -24,33 +30,23 @@ label span {
 }
 
 h1 {
-    margin: 0;
-    color: #333;
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 30px;
+    color: var(--blue-royal);
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
-.form-group {
-    margin-bottom: 10px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+form{
+    border: 1px solid var(--border-primary);
+    border-radius: 5px;
+    padding: 30px;
 }
 
 .form-group textarea {
     resize: none;
-    height: 100px;
+    /* height: 100px; */
 }
 
 .form-group button {
@@ -62,6 +58,7 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .form-group button:hover {
@@ -134,3 +131,82 @@ textarea {
         padding: 8px;
     }
 }
+
+
+/* icon */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--blue-light);
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.icon {
+    background-color: var(--blue-royal);
+    padding: 19px;
+    color: var(--icon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon i{
+    font-size: 25px;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+    border: none;
+    outline: none;
+    padding: 5px;
+    flex: 1;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.form-group input,
+.form-group textarea {
+    height: 50px;
+    width: 100%;
+    outline: none;
+    border: 1px solid var(--border-primary);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: inherit;
+    color: var(--blue-cobalt);
+    transition: all 0.3s ease-in-out;
+    background-color: transparent;
+}
+
+.form-group label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 5px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+    color: #888;
+}
+
+.form-group input:focus + label, 
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue-light);
+}
+
+/* Đảm bảo input và textarea có placeholder để kích hoạt hiệu ứng */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: transparent;
+}
+
