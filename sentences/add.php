@@ -63,6 +63,8 @@ if ($wordId) {
                         </select>
                     </div>
                 <?php else: ?>
+
+                <!-- Select word -->
                     <div class="form-group">
                         <div class="input-wrapper">
                             <span class="icon">
