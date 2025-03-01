@@ -1,7 +1,6 @@
-<?php 
-// Lấy URL gốc của project
+<!-- <?php 
 $base_url = "http://" . $_SERVER['HTTP_HOST'] . "/Study3";
-?>
+?> -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -12,7 +11,7 @@ $base_url = "http://" . $_SERVER['HTTP_HOST'] . "/Study3";
 <script src="../src/js/sweetalert2.js"></script>
 <script src="../src/js/jquery.min.js"></script>
 
-<!-- <header>
+<header>
 
     <a href="../">
         <img src="../src/images/logo.png" alt="logo" class="header-logo">
@@ -71,8 +70,8 @@ $base_url = "http://" . $_SERVER['HTTP_HOST'] . "/Study3";
         </ul>
     </nav>
 
-</header> -->
-<header>
+</header>
+<!-- <header>
     <a href="<?= $base_url ?>/">
         <img src="<?= $base_url ?>/src/images/logo.png" alt="logo" class="header-logo">
     </a>
@@ -129,4 +128,4 @@ $base_url = "http://" . $_SERVER['HTTP_HOST'] . "/Study3";
             <li><a href="<?= $base_url ?>/settings/"><i class="fa-solid fa-gear"></i> Settings</a></li>
         </ul>
     </nav>
-</header>
+</header> -->
