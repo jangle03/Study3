@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/root.css">
     <link rel="stylesheet" href="../src/css/link-menu.css">
 </head>
 
@@ -26,7 +29,7 @@
                 <span>Profile</span>
             </a>
 
-            <?php if ($_SESSION['username'] == 'iqbolshoh') : ?>
+            <?php if ($_SESSION['username'] == 'admin') : ?>
                 <a href="users.php" class="link">
                     <i class="fa-solid fa-users-gear"></i>
                     <span>Users</span>

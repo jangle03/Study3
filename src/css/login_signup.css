@@ -1,47 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
 body {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0px;
 }
 
 .form-container {
-    background-color: #fff;
+    background-color: var(--background-primary);
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
     width: calc(100% - 40px);
-    max-width: 450px;
+    max-width: 550px;
     box-sizing: border-box;
 }
 
 h1 {
+    text-align: center;
     margin: 0 0 20px;
-    font-size: 24px;
-    color: #333;
+    font-size: 50px;
+    color: var(--blue-royal);
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
+form{
+    border: 1px solid var(--border-primary);
+    border-radius: 5px;
+    padding: 30px;
+}
 .form-group {
     margin-bottom: 15px;
     position: relative;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
+.form-group input{
+    height: 50px;
+    width: 100%;
+    outline: none;
+    border: 1px solid var(--border-primary);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: inherit;
+    color: var(--blue-cobalt);
+    transition: all 0.3s ease-in-out;
+    
 }
 
-.form-group input {
+.form-group label{
+    position: absolute;
+    padding: 0px 5px;
+    left: 65px;
+    top: 50%;
+    /* Quan trọng  */
+    pointer-events: none;
+    transform: translateY(-50%);
+    background: var(--background-primary);
+    transition: all 0.3s ease-in-out;
+}
+
+/* .form-group input:focus {
+    border: 2px solid #1a73e8;
+} */
+.form-group input:focus + label, .form-group input:valid + label{
+    top: 0px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--blue-light);
+}
+
+/* icon */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--blue-light);
+    border-radius: 5px;
+    overflow: hidden;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
+}
+
+.icon {
+    background-color: var(--blue-royal);
+    padding: 19px;
+    color: var(--icon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon i{
+    font-size: 25px;
+}
+
+.input-wrapper input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    flex: 1;
 }
 
 .form-group .password-container {
@@ -65,27 +122,28 @@ h1 {
 
 .form-group #submit {
     width: 100%;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--blue-royal);
+    color: var(--background-primary);
     border: none;
     padding: 12px 15px;
     border-radius: 4px;
-    font-size: 18px;
+    font-size: 25px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .form-group #submit:hover {
-    background-color: #0056b3;
+    background-color: var(--blue-dark);
 }
 
 .text-center {
     text-align: center;
     margin-top: 15px;
+    font-style: italic;
 }
 
 .text-center a {
-    color: #007bff;
+    color: var(--blue-primary);
     text-decoration: none;
 }
 
@@ -95,7 +153,8 @@ h1 {
 
 #email-message,
 #username-message {
-    color: red;
-    font-size: 14px;
+    color: var(--red);
+    font-size: 7px;
     margin-top: 5px;
+    font-style: italic;
 }

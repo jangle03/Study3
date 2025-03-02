@@ -38,20 +38,21 @@ setcookie('last_page',  ".." . $_SERVER['SCRIPT_NAME'], time() + (86400 * 30), "
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./src/css/home.css">
     <link rel="stylesheet" href="./src/css/footer.css">
+    <link rel="stylesheet" href="./src/css/header.css">
     <link rel="stylesheet" href="./src/css/sweetalert2.css">
 </head>
 
 <body>
-
-    <header class="site-header">
+    <?php include './includes/header.php'; ?>
+    <!-- <header class="site-header">
         <a href="./" class="logo-link">
             <img src="./src/images/logo.png" alt="logo" class="logo-img">
         </a>
-    </header>
+    </header> -->
 
     <div class="container">
         <h1 class="main-heading">Welcome to the English Learning Portal</h1>
-        <div class="links">
+        <!-- <div class="links">
             <a href="dictionary/" class="link-item">
                 <i class="fas fa-language link-icon"></i>
                 <span class="link-text">Dictionary</span>
@@ -76,8 +77,8 @@ setcookie('last_page',  ".." . $_SERVER['SCRIPT_NAME'], time() + (86400 * 30), "
                 <i class="fa-solid fa-gear link-icon"></i>
                 <span class="link-text">Settings</span>
             </a>
-
-        </div>
+          
+        </div> -->
     </div>
 
     <footer>
