@@ -51,17 +51,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <label for="title">Title<span>*</span></label>
-                    <input type="text" id="title" name="title" class="form-control" value="<?php echo htmlspecialchars($text['title']); ?>" required maxlength="150">
+                    <input type="text" id="title" name="title" class="form-control"
+                        value="<?php echo htmlspecialchars($text['title']); ?>" required maxlength="150">
                 </div>
 
                 <div class="form-group">
                     <label for="content">Content<span>*</span></label>
-                    <textarea id="content" name="content" class="form-control" required maxlength="2000"><?php echo htmlspecialchars($text['content']); ?></textarea>
+                    <textarea id="content" name="content" class="form-control" required
+                        maxlength="2000"><?php echo htmlspecialchars($text['content']); ?></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="translation">Translation<span>*</span></label>
-                    <textarea id="translation" name="translation" class="form-control" required maxlength="2000"><?php echo htmlspecialchars($text['translation']); ?></textarea>
+                    <textarea id="translation" name="translation" class="form-control" required
+                        maxlength="2000"><?php echo htmlspecialchars($text['translation']); ?></textarea>
                 </div>
 
                 <div class="form-group">
@@ -74,29 +77,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include '../includes/footer.php'; ?>
 
     <script>
-        $(document).ready(function() {
-            $("#textForm").submit(function(event) {
-                event.preventDefault();
+    $(document).ready(function() {
+        $("#textForm").submit(function(event) {
+            event.preventDefault();
 
-                $.ajax({
-                    url: '',
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        const res = JSON.parse(response);
+            $.ajax({
+                url: '',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    const res = JSON.parse(response);
 
-                        if (res.status === 'success') {
-                            Swal.fire('Success!', 'Changes saved successfully.', 'success');
-                        } else {
-                            Swal.fire('Error!', res.message || 'There was an error saving your changes.', 'error');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        Swal.fire('Error!', 'There was an error saving your changes.', 'error');
+                    if (res.status === 'success') {
+                        Swal.fire('Success!', 'Changes saved successfully.', 'success');
+                    } else {
+                        Swal.fire('Error!', res.message ||
+                            'There was an error saving your changes.', 'error');
                     }
-                });
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire('Error!', 'There was an error saving your changes.', 'error');
+                }
             });
         });
+    });
     </script>
 </body>
 
