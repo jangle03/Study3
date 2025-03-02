@@ -49,19 +49,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <form id="textForm" method="POST">
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="title">Title<span>*</span></label>
                     <input type="text" id="title" name="title" class="form-control" value="<?php echo htmlspecialchars($text['title']); ?>" required maxlength="150">
+                </div> -->
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <input type="text" id="title" name="title" class="form-control" value="<?php echo htmlspecialchars($text['title']); ?>" required maxlength="150">
+                        <label for="title">Title<span>*</span></label>
+                    </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="content">Content<span>*</span></label>
                     <textarea id="content" name="content" class="form-control" required maxlength="2000"><?php echo htmlspecialchars($text['content']); ?></textarea>
+                </div> -->
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <textarea id="content" name="content" class="form-control" required maxlength="2000"><?php echo htmlspecialchars($text['content']); ?></textarea>
+                        <label for="content">Content<span>*</span></label>
+                    </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="translation">Translation<span>*</span></label>
                     <textarea id="translation" name="translation" class="form-control" required maxlength="2000"><?php echo htmlspecialchars($text['translation']); ?></textarea>
+                </div> -->
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </span>
+                        <textarea id="translation" name="translation" class="form-control" required maxlength="2000"><?php echo htmlspecialchars($text['translation']); ?></textarea>
+                        <label for="translation">Translation<span>*</span></label>
+                    </div>
                 </div>
 
                 <div class="form-group">
