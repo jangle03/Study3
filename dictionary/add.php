@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <div class="input-wrapper">
                         <span class="icon">
-                            <i class="fas fa-user"></i>
+                            <i class="fa-solid fa-pen-ruler"></i>
                         </span>
                         <input type="text" id="word" name="word" required maxlength="150">
                         <label for="word">Word<span>*</span></label>
@@ -38,26 +38,23 @@
                 <div class="form-group">
                     <div class="input-wrapper">
                         <span class="icon">
-                            <i class="fas fa-user"></i>
+                            <i class="fa-solid fa-circle-info"></i>
                         </span>
                         <input type="text" id="translation" name="translation" required maxlength="150">
                         <label for="translation">Translation<span>*</span></label>
                     </div>
                 </div>
                 <!-- Definition -->
-                <!-- <div class="form-group">
-                    <label for="definition">Definition</label>
-                    <textarea id="definition" name="definition" maxlength="255"></textarea>
-                </div> -->
                 <div class="form-group">
                     <div class="input-wrapper">
                         <span class="icon">
-                            <i class="fas fa-user"></i>
+                            <i class="fa-solid fa-pen-to-square"></i>
                         </span>
                         <textarea id="definition" name="definition" maxlength="255"></textarea>
                         <label for="definition">Definition</label>
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <button type="submit">Add Word</button>
                 </div>

@@ -97,6 +97,7 @@
 <div class="bar">
     <p class="site-name">Study3</p>
     <a href="/login/" class="login-button">Login</a>
+    <!-- <a href="../login/index.php" class="login-button">Login</a> -->
 </div>
 
 <div class="container">
