@@ -53,7 +53,7 @@ if ($wordId) {
 
             <form id="sentenceForm" method="post">
                 <?php if ($wordId): ?>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="word">Selected Word</label>
                         <input type="hidden" id="word" name="word_id" value="<?php echo htmlspecialchars($wordId); ?>">
                         <select disabled>
@@ -61,6 +61,22 @@ if ($wordId) {
                                 <?php echo htmlspecialchars($word_name); ?>
                             </option>
                         </select>
+                    </div> -->
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="icon">
+                                <i class="fa-solid fa-pen-ruler"></i>
+                            </span>
+                            <div class="custom-select-wrapper">
+                            <select disabled>
+                                <option>
+                                    <?php echo htmlspecialchars($word_name); ?>
+                                </option>
+                            </select>
+                            <input type="hidden" id="word" name="word_id" value="<?php echo htmlspecialchars($wordId); ?>">
+                            <label for="word">Selected Word</label>
+                            </div>
+                        </div>
                     </div>
                 <?php else: ?>
 
@@ -80,7 +96,7 @@ if ($wordId) {
                                     <?php endforeach; ?>
                                 </select>
                                 <span class="custom-select-icon">
-                                    <i class="fa-solid fa-chevron-down"></i> <!-- Thêm icon cho select -->
+                                    <i class="fa-solid fa-chevron-down"></i> 
                                 </span>
                             </div>
                             <label for="word">Select Word<span>*</span></label>
