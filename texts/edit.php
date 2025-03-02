@@ -101,29 +101,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include '../includes/footer.php'; ?>
 
     <script>
-        $(document).ready(function() {
-            $("#textForm").submit(function(event) {
-                event.preventDefault();
+    $(document).ready(function() {
+        $("#textForm").submit(function(event) {
+            event.preventDefault();
 
-                $.ajax({
-                    url: '',
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        const res = JSON.parse(response);
+            $.ajax({
+                url: '',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    const res = JSON.parse(response);
 
-                        if (res.status === 'success') {
-                            Swal.fire('Success!', 'Changes saved successfully.', 'success');
-                        } else {
-                            Swal.fire('Error!', res.message || 'There was an error saving your changes.', 'error');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        Swal.fire('Error!', 'There was an error saving your changes.', 'error');
+                    if (res.status === 'success') {
+                        Swal.fire('Success!', 'Changes saved successfully.', 'success');
+                    } else {
+                        Swal.fire('Error!', res.message ||
+                            'There was an error saving your changes.', 'error');
                     }
-                });
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire('Error!', 'There was an error saving your changes.', 'error');
+                }
             });
         });
+    });
     </script>
 </body>
 
