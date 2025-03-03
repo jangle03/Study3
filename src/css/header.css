@@ -34,7 +34,7 @@ body {
 }
 
 header {
-    background-color: #2f4f4f;
+    background-color: #0047ab;
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 9px 12px;
@@ -108,19 +108,19 @@ header a {
 }
 
 .header-nav ul li a:hover {
-    color: #ff6347;
+    color: #40e0d0;
 }
 
 .header-nav ul li a:hover:before {
-    background-color: #ff6347;
+    background-color: #40e0d0;
 }
 
 .header-button.menu-toggle {
-    background-color: #2f4f4f;
+    background-color: var(--blue-light);
 }
 
 .header-links {
-    background-color: #2f4f4f;
+    background-color: var(--blue-light);
     display: none;
     flex-direction: column;
     position: absolute;
@@ -203,7 +203,7 @@ header a {
     .header-link {
         display: flex;
         align-items: center;
-        background-color: #2f4f4f;
+        background-color: var(--blue-light);
         color: #fff;
         padding: 12px 27px;
         margin: 5px 0;
