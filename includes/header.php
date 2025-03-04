@@ -61,7 +61,7 @@
             <li><a href="../sentences/"><i class="fas fa-comment-dots"></i> Sentences</a></li>
             <li><a href="../texts/"><i class="fas fa-book link-icon"></i>Texts</a></li>
             <li><a href="../exercise/"><i class="fas fa-brain"></i> Exercise</a></li>
-            <li><a href="../blog/"><i class="fas fa-brain"></i> Post blog</a></li>
+            <li><a href="../blog/"><i class="fas fa-brain"></i> Blog</a></li>
             <li><a href="../settings/"><i class="fa-solid fa-gear"></i> Settings</a></li>
         </ul>
     </nav>
