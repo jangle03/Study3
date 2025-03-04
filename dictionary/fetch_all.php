@@ -131,7 +131,7 @@ if ($results) {
         <div id="modalDefinition" class="modal-section"></div>
         <div class="modal-buttons">
             <a class="sentences" onclick="sentences()">
-                Sentences
+                Add sentences
             </a>
 
             <div class="btn">

@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <link rel="stylesheet" href="../src/css/add.css">
+    <link rel="stylesheet" href="../src/css/add-sentences.css">
     <title>Edit Sentence</title>
 </head>
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <form id="sentenceForm" method="POST">
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="word">Select Word<span>*</span></label>
                     <select id="word" name="word_id" required>
                         <option value="">Select a Word</option>
@@ -62,17 +62,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </option>
                         <?php endforeach; ?>
                     </select>
+                </div> -->
+                <!-- Select word -->
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <div class="custom-select-wrapper">
+                            <select id="word" name="word_id" required>
+                            <option value="">Select a Word</option>
+                            <?php foreach ($results as $row): ?>
+                                <option value="<?php echo htmlspecialchars($row['id']); ?>"
+                                    <?php echo $row['id'] == $sentence['word_id'] ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($row['word']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <span class="custom-select-icon">
+                            <i class="fa-solid fa-chevron-down"></i> <!-- Thêm icon cho select -->
+                        </span>
+                        </div>
+                        <label for="word">Select Word<span>*</span></label>
+                    </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="sentence">Sentence<span>*</span></label>
                     <textarea id="sentence" name="sentence" class="form-control" required maxlength="200"><?php echo htmlspecialchars($sentence['sentence']); ?></textarea>
+                </div> -->
+                <!-- Sentence -->
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <textarea id="sentence" name="sentence" class="form-control" required maxlength="200"><?php echo htmlspecialchars($sentence['sentence']); ?></textarea>
+                        <label for="sentence">Sentence<span>*</span></label>
+                    </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="translation">Translation<span>*</span></label>
                     <textarea id="translation" name="translation" class="form-control" required maxlength="255"><?php echo htmlspecialchars($sentence['translation']); ?></textarea>
-                </div>
+                </div> -->
+                <!-- Translation -->
+                 <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </span>
+                        <textarea id="translation" name="translation" class="form-control" required maxlength="255"><?php echo htmlspecialchars($sentence['translation']); ?></textarea>
+                        <label for="translation">Translation<span>*</span></label>
+                    </div>
+                 </div>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Update</button>

@@ -49,7 +49,7 @@
             </div>
         </div>
 
-
+        <h1>DICTIONARY</h1>
         <div id="suggestions"></div>
         <div id="result"></div>
     </div>
