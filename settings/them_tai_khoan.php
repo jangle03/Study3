@@ -125,23 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </div>
-
-    <!-- <div class="container">
-        <h2 class="header-title">Add User</h2>
-
-        <form action="" method="POST" enctype="multipart/form-data">
-            
-            
-            
-         
-            <div class="form-group">
-                <label for="profile_picture">Profile Picture</label>
-                <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
-            </div>
-            <button type="submit" class="btn btn-primary">Add User</button>
-        </form>
-    </div> -->
-
     <?php include '../includes/footer.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $username = $_POST['username'];
+    $password = $_POST['password'];
     $profile_picture = $_FILES['profile_picture']['name'];
 
     if ($profile_picture) {
@@ -38,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'last_name' => $last_name,
         'email' => $email,
         'username' => $username,
+        'password' => $password,
         'profile_picture' => $profile_picture
     ], 'id = ?', [$id], 'i');
 
@@ -53,40 +55,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/root.css">
+    <link rel="stylesheet" href="../src/css/add.css">
 </head>
 
 <body>
 
     <?php include '../includes/header.php'; ?>
+    <div class="justify-center">
+        <div class="add-container">
+            <h1>Edit user</h1>
+            <form id="wordForm" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo htmlspecialchars($user['first_name'] ?? ''); ?>" required>
+                        <label for="first_name">First Name</label>
+                    </div>
+                </div>
 
-    <div class="container">
-        <h2 class="header-title">Edit User</h2>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo htmlspecialchars($user['last_name'] ?? ''); ?>" required>
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
 
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="first_name">First Name</label>
-                <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo htmlspecialchars($user['first_name'] ?? ''); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="last_name">Last Name</label>
-                <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo htmlspecialchars($user['last_name'] ?? ''); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($user['username'] ?? ''); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="profile_picture">Profile Picture</label>
-                <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
-                <img width="100px" src="../src/images/profile-image/<?php echo htmlspecialchars($user['profile_picture'] ?? ''); ?>" alt="Profile Image" class="profile-img mt-2">
-            </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>" required>
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($user['username'] ?? ''); ?>" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <input type="password" class="form-control" id="password" name="password" value="<?php echo htmlspecialchars($user['password'] ?? ''); ?>" required>
+                        <!-- <input type="password" class="form-control" id="password" name="password" required> -->
+                        <label for="password"><span>*</span>Password</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
+
+                        <label for="profile_picture">Profile Picture</label>
+                    </div>
+                    <img width="100px" src="../src/images/profile-image/<?php echo htmlspecialchars($user['profile_picture'] ?? ''); ?>" alt="Profile Image" class="profile-img mt-2">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">Update</button>
+                </div>
+
+            </form>
+        </div>
     </div>
 
     <?php include '../includes/footer.php'; ?>
