@@ -5,10 +5,10 @@ class Database
 
     public function __construct()
     {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "english";
+        $servername = "160-191-244-99.cprapid.com";
+        $username = "aerinidv_khanhhuyen";
+        $password = "khanhhuyen2412";
+        $dbname = "aerinidv_english";
 
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
