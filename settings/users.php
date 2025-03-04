@@ -31,7 +31,7 @@ $user = $query->select('users');
     <div class="container2">
         <h2 class="header-title">User List</h2>
         <?php if ($_SESSION['username'] === 'admin'): ?>
-            <a href="them_tai_khoan.php" class="btn btn-primary mb-3">Add User</a>
+            <a href="create-account.php" class="btn btn-primary mb-3">Add User</a>
         <?php endif; ?>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
@@ -59,7 +59,7 @@ $user = $query->select('users');
                             </td>
                             <td><?php echo htmlspecialchars($u['created_at']); ?></td>
                             <td>
-                                <a href="sua_tai_khoan.php?id=<?= $u['id'] ?>" class="btn btn-success">Sửa</a>
+                                <a href="edit-account.php?id=<?= $u['id'] ?>" class="btn btn-success">Sửa</a>
                                 <?php if ($u['username'] !== 'admin'): ?>
                                     <a href="xoa_tai_khoan.php?id=<?= $u['id'] ?>" class="btn btn-danger">Xóa</a>
                                 <?php endif; ?>
