@@ -73,9 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="profile-container">
         <div class="profile-form-container">
             <div class="profile-header">
-                <img class="profile-image"
+                <!-- <img class="profile-image"
                     src="../src/images/profile-image/<?php echo $user['profile_picture'] ? $user['profile_picture'] : 'default.png'; ?>"
+                    alt="Profile Image"> -->
+                    <img class="profile-image"
+                    src="../src/images/profile-image/<?php echo $user['profile_picture'] ? $user['profile_picture'] : 'default.png'; ?>?t=<?php echo time(); ?>"
                     alt="Profile Image">
+
                 <h2 class="profile-name"><?php echo htmlspecialchars($user['username']); ?></h2>
             </div>
             <form id="profile-form" action="profile.php" method="POST" enctype="multipart/form-data"
@@ -119,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php include '../includes/footer.php'; ?>
 
-    <script>
+    <!-- <script>
         document.getElementById('toggle-password').addEventListener('click', function() {
             const passwordField = document.getElementById('password');
             const toggleIcon = this.querySelector('i');
@@ -134,7 +138,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 toggleIcon.classList.add('fa-eye');
             }
         });
-    </script>
+    </script> -->
+    <script>
+        document.getElementById('profile_picture').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector('.profile-image').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        </script>
+
 </body>
 
 </html>
