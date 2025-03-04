@@ -49,7 +49,7 @@
             </div>
         </div>
 
-
+        <h1>TEXTS</h1>
         <div id="suggestions"></div>
         <div id="result"></div>
     </div>

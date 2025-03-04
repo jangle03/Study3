@@ -10,7 +10,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--blue-primary);
     border-radius: 5px;
     gap: 10px;
 }
@@ -42,21 +42,21 @@
 }
 
 .list span.highlight {
-    color: red;
+    color: var(--error);
 }
 
 .list:hover {
-    background-color: #f5f5f5;
+    background-color: var(--bg-blue-light);
 }
 
 .fa-heart {
-    color: #ddd;
+    color: var(--blue-turquoise);
     cursor: pointer;
     transition: color 0.3s, transform 0.3s;
 }
 
 .fa-heart.liked {
-    color: red;
+    color: var(--error);
 }
 
 .fa-heart:hover {
@@ -71,7 +71,7 @@
 .fa-volume-up,
 .fa-trash,
 .fa-edit {
-    color: #777;
+    color: var(--blue-cobalt);
     transition: color 0.3s, transform 0.3s;
 }
 
@@ -79,7 +79,7 @@
 .fa-volume-up:hover,
 .fa-trash:hover,
 .fa-edit:hover {
-    color: #ff6347;
+    color: var(--blue-indigo);
     transform: scale(1.2);
 }
 
@@ -87,8 +87,18 @@
 .fa-volume-up:active,
 .fa-trash:active,
 .fa-edit:active {
-    color: #ff4000;
     transform: scale(1.1);
+}
+.fa-volume-up:active{
+    color: var(--blue-turquoise);
+}
+
+.fa-trash:active{
+    color: var(--error);
+}
+
+.fa-edit:active{
+    color: var(--blue-deep);
 }
 
 .modal {
@@ -113,7 +123,7 @@
 }
 
 .modal-content {
-    background-color: #ffffff;
+    background-color: var(--background-primary);
     margin: 100px auto;
     padding: 20px;
     border-radius: 12px;
@@ -131,18 +141,18 @@
     margin-bottom: 10px;
     font-size: 16px;
     line-height: 1.3;
-    color: #2c3e50;
+    color: var(--word-primary);
 }
 
 #modalTitle {
-    font-size: 18px;
-    color: #000;
+    font-size: 25px;
+    color: var(--blue-royal);
 }
 
 .modal-content hr {
     border: 0;
-    height: 1px;
-    background: #ddd;
+    height: 2px;
+    background: var(--blue-midnight);
     margin: 10px 0;
 }
 
@@ -150,13 +160,13 @@
     margin-bottom: 10px;
     font-size: 15px;
     line-height: 1.3;
-    color: #16a085;
+    color: var(--blue-turquoise);
 }
 
 #modalDefinition {
     font-size: 14px;
     line-height: 1.3;
-    color: #34495e;
+    color: var(--word-primary);
     word-wrap: break-word;
 }
 
@@ -198,25 +208,35 @@
     transition: color 0.3s ease;
 }
 
-.modal-buttons i:hover {
-    color: #ff6347;
+/* .modal-buttons i:hover {
+    color: var(--blue-turquoise);
+} */
+.modal-buttons .btn .fa-volume-up:hover{
+    color: var(--blue-turquoise);
 }
 
+.modal-buttons .btn .fa-edit:hover{
+    color: var(--blue-indigo);
+}
+
+.modal-buttons .btn .fa-solid:hover{
+    color: var(--error);
+}
 .sentences {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 8px 12px;
     background-color: #fff;
-    color: #ff6347;
-    border: 2px solid #ff6347;
+    color: var(--blue-dark);
+    border: 2px solid var(--blue-dark);
     border-radius: 8px;
     text-decoration: none;
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .sentences:hover {
-    background-color: #ff6347;
+    background-color: var(--blue-dark);
     color: #fff;
 }
 
@@ -271,3 +291,4 @@
 .information-not-found a:hover {
     background-color: #0056b3;
 }
+

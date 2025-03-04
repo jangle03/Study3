@@ -51,6 +51,7 @@
             </div>
         </div>
 
+        <h1>SENTENCES</h1>
         <div id="suggestions"></div>
         <div id="result"></div>
 

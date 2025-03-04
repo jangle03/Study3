@@ -11,7 +11,7 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.success) {
                     Swal.fire({
-                        position: 'top-end',
+                        position: 'center',
                         icon: 'success',
                         title: 'The dictionary entry has been added!',
                         showConfirmButton: false,
