@@ -59,11 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon.ico">
     <link rel="stylesheet" href="../src/css/profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../src/css/root.css">
 </head>
 
 <body>
@@ -71,74 +67,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include '../includes/header.php'; ?>
 
     <div class="profile-container">
-        <div class="profile-form-container">
-            <div class="profile-header">
-                <!-- <img class="profile-image"
-                    src="../src/images/profile-image/<?php echo $user['profile_picture'] ? $user['profile_picture'] : 'default.png'; ?>"
-                    alt="Profile Image"> -->
-                    <img class="profile-image"
+        <div class="profile-content">
+            <div class="profile-left">
+                <img class="profile-image"
                     src="../src/images/profile-image/<?php echo $user['profile_picture'] ? $user['profile_picture'] : 'default.png'; ?>?t=<?php echo time(); ?>"
                     alt="Profile Image">
-
-                <h2 class="profile-name"><?php echo htmlspecialchars($user['username']); ?></h2>
+                <h2 class="profile-name"><?php echo $username; ?></h2>
             </div>
-            <form id="profile-form" action="profile.php" method="POST" enctype="multipart/form-data"
-                class="profile-form">
-                <label for="first_name" class="form-label">First Name:</label>
-                <input type="text" id="first_name" name="first_name" class="form-input"
-                    value="<?php echo htmlspecialchars($user['first_name']); ?>" required maxlength="30">
 
-                <label for="last_name" class="form-label">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" class="form-input"
-                    value="<?php echo htmlspecialchars($user['last_name']); ?>" required maxlength="30">
+            <div class="profile-right">
+                <form id="profile-form" action="profile.php" method="POST" enctype="multipart/form-data">
 
-                <label for="username" class="form-label">Username:</label>
-                <input type="text" id="username" name="username" class="form-input" value="<?php echo $username; ?>"
-                    readonly maxlength="30">
+                    <label for="first_name" class="form-label">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" class="form-input"
+                        value="<?php echo htmlspecialchars($user['first_name']); ?>" required maxlength="30">
 
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-input"
-                    value="<?php echo htmlspecialchars($user['email']); ?>" required readonly maxlength="100">
+                    <label for="last_name" class="form-label">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" class="form-input"
+                        value="<?php echo htmlspecialchars($user['last_name']); ?>" required maxlength="30">
 
-                <label for="profile_picture" class="form-label">Profile Picture:</label>
-                <div class="custom-file-input">
-                    <input type="file" id="profile_picture" name="profile_picture" class="form-input" accept="image/*">
-                    <div class="file-input-content">
-                        <span class="file-label">Choose File</span>
-                        <i class="fa-solid fa-image"></i>
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" name="email" class="form-input"
+                        value="<?php echo htmlspecialchars($user['email']); ?>" required readonly maxlength="100">
+
+                    <label for="profile_picture" class="form-label">Profile Picture:</label>
+                    <!-- <input type="file" id="profile_picture" name="profile_picture" class="form-input" accept="image/*"> -->
+                    <div class="custom-file-input">
+                        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                        <div class="file-input-content" onclick="document.getElementById('profile_picture').click();">
+                            <span id="file-label">Choose File</span>
+                            <i class="fa-solid fa-image"></i>
+                        </div>
                     </div>
-                </div>
 
-                <label for="password" class="form-label">New Password:</label>
-                <div class="password-container">
-                    <input type="password" id="password" name="password" class="password-input"
+                    <label for="password" class="form-label">New Password:</label>
+                    <input type="password" id="password" name="password" class="form-input"
                         placeholder="No change? Leave blank." maxlength="255">
-                    <a type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></a>
-                </div>
 
-                <button type="submit" class="submit-button">Save Changes</button>
-            </form>
+                    <button type="submit" class="submit-button">Save Changes</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <?php include '../includes/footer.php'; ?>
 
-    <!-- <script>
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordField = document.getElementById('password');
-            const toggleIcon = this.querySelector('i');
-
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
-            }
-        });
-    </script> -->
     <script>
         document.getElementById('profile_picture').addEventListener('change', function(event) {
             const file = event.target.files[0];
@@ -150,8 +123,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 reader.readAsDataURL(file);
             }
         });
-        </script>
-
+    </script>
+    
 </body>
 
 </html>
