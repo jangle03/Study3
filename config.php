@@ -256,4 +256,40 @@ class Database
             die("SQL execute error: " . $stmt->error);
         }
     }
+
+    public function addBlogPost($title, $content, $userId, $image = null)
+    {
+        $sql = "INSERT INTO blog (title, content, id_users, image) VALUES (?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssis", $title, $content, $userId, $image);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function updateBlogPost($id, $title, $content, $image = null)
+    {
+        $sql = "UPDATE blog SET title = ?, content = ?, image = ? WHERE id = ? AND status = 0";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("sssi", $title, $content, $image, $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function deleteBlogPost($id)
+    {
+        $sql = "DELETE FROM blog WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function approveBlogPost($id)
+    {
+        $sql = "UPDATE blog SET status = 1 WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+    }
 }
