@@ -25,17 +25,49 @@
             <h1>Add New Text</h1>
 
             <form id="textForm" method="post">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="text_title">Text Title<span>*</span></label>
                     <input type="text" id="text_title" name="text_title" required maxlength="150">
-                </div>
+                </div> -->
+                <!-- Text title -->
                 <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </span>
+                        <input type="text" id="text_title" name="text_title" required maxlength="150">
+                        <label for="text_title">Text Title<span>*</span></label>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
                     <label for="text_content">Text Content<span>*</span></label>
                     <textarea id="text_content" name="text_content" required maxlength="2000"></textarea>
-                </div>
+                </div> -->
+                <!-- Text Content -->
                 <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <textarea id="text_content" name="text_content" required maxlength="2000"></textarea>
+                        <label for="text_content">Text Content<span>*</span></label>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
                     <label for="translation">Translation<span>*</span></label>
                     <textarea id="translation" name="translation" required maxlength="2000"></textarea>
+                </div> -->
+                <!-- Translation -->
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </span>
+                        <textarea id="translation" name="translation" required maxlength="2000"></textarea>
+                        <label for="translation">Translation<span>*</span></label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <button type="submit">Add Text</button>
