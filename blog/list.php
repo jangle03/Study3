@@ -20,8 +20,10 @@ $posts = $db->select('blog', '*', 'WHERE id_users = ' . $user_id);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <link rel="stylesheet" href="../src/css/link-menu.css">
+    <!-- <link rel="stylesheet" href="../src/css/link-menu.css"> -->
     <link rel="stylesheet" href="../src/css/blog-list.css">
+    <!-- <link rel="stylesheet" href="../src/css/blog-index.css"> -->
+
 </head>
 
 <body>
@@ -29,47 +31,59 @@ $posts = $db->select('blog', '*', 'WHERE id_users = ' . $user_id);
     <?php include '../includes/header.php' ?>
 
     <div class="container">
-        <p><a href="javascript:history.back()" class="btn btn-primary">Quay trở về</a></p>
-        <h1>List my blog</h1>
-        <table border="1px">
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Tiêu đề</th>
-                    <th>Ngày đăng</th>
-                    <th>Trạng thái</th>
-                    <th>Xem chi tiết</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($posts as $index => $post): ?>
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <?php if ($_SESSION['username'] === 'admin'): ?>
+                    <li><a href="post_management.php">Post Management</a></li>
+                <?php endif; ?>
+                <li><a href="add.php">Add Blog</a></li>
+                <li><a href="list.php">List my Blog</a></li>
+                
+            </ul>
+        </div>
+
+        <div class="content">
+            <!-- <p><a href="javascript:history.back()" class="btn btn-primary">Quay trở về</a></p> -->
+            <h1>List my blog</h1>
+            <table border="1px">
+                <thead>
                     <tr>
-                        <td><?php echo $index + 1; ?></td>
-                        <td><?php echo ($post['title']); ?></td>
-                        <td><?php echo ($post['created_at']); ?></td>
-                        <td>
-                            <?php if ($post['status'] == 1): ?>
-                                <span>Đã duyệt</span>
-                            <?php elseif ($post['status'] == -1): ?>
-                                <span>Không duyệt</span>
-                            <?php else: ?>
-                                <span>Chờ duyệt</span>
-                                <a href="edit_post.php?id=<?php echo $post['id']; ?>" class="btn btn-warning">Sửa</a>
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Xem chi tiết</a>
-                        </td>
+                        <th>STT</th>
+                        <th>Tiêu đề</th>
+                        <th>Ngày đăng</th>
+                        <th>Trạng thái</th>
+                        <th>Xem chi tiết</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($posts as $index => $post): ?>
+                        <tr>
+                            <td><?php echo $index + 1; ?></td>
+                            <td><?php echo ($post['title']); ?></td>
+                            <td><?php echo ($post['created_at']); ?></td>
+                            <td>
+                                <?php if ($post['status'] == 1): ?>
+                                    <span>Đã duyệt</span>
+                                <?php elseif ($post['status'] == -1): ?>
+                                    <span>Không duyệt</span>
+                                <?php else: ?>
+                                    <span>Chờ duyệt</span>
+                                    <a href="edit_post.php?id=<?php echo $post['id']; ?>" class="btn btn-warning">Sửa</a>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Xem chi tiết</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <?php include '../includes/footer.php' ?>
-
-
-    
 </body>
 
 </html>

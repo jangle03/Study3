@@ -43,7 +43,9 @@ $posts = $db->select('blog');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <link rel="stylesheet" href="../src/css/link-menu.css">
+    <!-- <link rel="stylesheet" href="../src/css/link-menu.css"> -->
+    <link rel="stylesheet" href="../src/css/blog-add.css">
+
 </head>
 
 <body>
@@ -51,17 +53,64 @@ $posts = $db->select('blog');
     <?php include '../includes/header.php' ?>
 
     <div class="container">
-    <p><a href="javascript:history.back()" class="btn btn-primary">Quay trở về</a></p>
-        <h1>Blog</h1>
-        <form method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="">
-            <input type="text" name="title" placeholder="Title" required>
-            <textarea name="content" placeholder="Content" required></textarea>
-            <input type="file" name="image" placeholder="Upload Image">
-            <button type="submit" name="add">Add Post</button>
-        </form>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+                <li><a href="index.php">Home</a></li>
+                <?php if ($_SESSION['username'] === 'admin'): ?>
+                    <li><a href="post_management.php">Post Management</a></li>
+                <?php endif; ?>
+                <li><a href="add.php">Add Blog</a></li>
+                <li><a href="list.php">List my Blog</a></li>
+                
+            </ul>
+    </div>
+
+    <div class="content">
+    <!-- <p><a href="javascript:history.back()" class="btn btn-primary">Quay trở về</a></p> -->
+        <h1>New postpost</h1>
+    <form method="post" enctype="multipart/form-data" class="blog-form">
+        <input type="hidden" name="id" value="">
+
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" placeholder="Write a Title" required>
+
+        <label for="content">Content</label>
+        <textarea name="content" id="content" placeholder="Write a Content" required></textarea>
+
+        <label for="image">Upload Image</label>
+        <div class="custom-file-upload">
+            <input type="file" name="image" id="image" accept="image/*" onchange="previewImage(event)">
+            <label for="image" class="upload-btn"><i class="fas fa-upload"></i> Choose Image</label>
+        </div>
+
+        <div class="image-preview">
+            <img id="preview" src="#" alt="Image Preview" style="display: none;">
+        </div>
+
+
+        <div class="button-group">
+            <button type="submit" name="add" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Add Post
+            </button>
+        </div>
+    </form>
+
+
+    </div>
         
     </div>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var preview = document.getElementById('preview');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 
     <?php include '../includes/footer.php' ?>
 

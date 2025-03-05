@@ -22,7 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    // $password = $_POST['password'];
+    if (!empty($_POST['password'])) {
+        $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    } else {
+        $hashed_password = $user['password'];
+    }
+    
     $profile_picture = $_FILES['profile_picture']['name'];
 
     if ($profile_picture) {
@@ -43,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'password' => $hashed_password,
         'profile_picture' => $profile_picture
     ], 'id = ?', [$id], 'i');
+    
 
     header("Location: users.php");
     exit;
@@ -65,10 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         
         <div class="text-center mb-3">
-                <img class="profile-image"
-                    src="../src/images/profile-image/<?php echo $user['profile_picture'] ? $user['profile_picture'] : 'default.png'; ?>?t=<?php echo time(); ?>"
-                    alt="Profile Image">
-                    <h2 class="profile-name"><?php echo htmlspecialchars($user['username'] ?? ''); ?></h2>
+        <img class="profile-image"
+            src="../src/images/profile-image/<?php echo !empty($user['profile_picture']) ? htmlspecialchars($user['profile_picture']) : 'default.png'; ?>?t=<?php echo time(); ?>"
+            onerror="this.onerror=null;this.src='../src/images/profile-image/default.png';"
+            alt="Profile Image">
+
+            <h2 class="profile-name"><?php echo htmlspecialchars($user['username'] ?? ''); ?></h2>
 
             </div>
         <form method="post" enctype="multipart/form-data">
