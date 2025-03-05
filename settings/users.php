@@ -55,8 +55,11 @@ $user = $query->select('users');
                             <td><?php echo htmlspecialchars($u['email']); ?></td>
                             <td><?php echo htmlspecialchars($u['username']); ?></td>
                             <td class="text-center">
-                                <img src="../src/images/profile-image/<?php echo htmlspecialchars($u['profile_picture']); ?>" alt="Profile Image" class="profile-img">
+                            <img src="../src/images/profile-image/<?php echo htmlspecialchars($u['profile_picture']); ?>" 
+                                alt="Profile Image" class="profile-img"
+                                onerror="this.onerror=null;this.src='../src/images/profile-image/default.png';">
                             </td>
+
                             <td><?php echo htmlspecialchars($u['created_at']); ?></td>
                             <td>
                                 <a href="edit-account.php?id=<?= $u['id'] ?>" class="btn btn-success">Sửa</a>

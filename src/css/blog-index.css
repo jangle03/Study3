@@ -2,7 +2,6 @@
     display: flex;
     gap: 20px;
     padding: 20px;
-    max-width: 1500px;
 }
 
 .sidebar {
@@ -12,6 +11,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 .sidebar h2 {
     font-size: 20px;
@@ -37,15 +37,12 @@
     transition: background 0.3s;
 }
 
-/* Màu xanh khi bấm chọn menu */
-.sidebar ul li a.active,
 .sidebar ul li a:hover {
     background: #007bff;
     color: #fff;
 }
 
 .content {
-    margin-left: 10%;
     flex-grow: 1;
     background: #fff;
     padding: 20px;
@@ -62,7 +59,6 @@
 .post h3 {
     font-size: 22px;
     color: #333;
-    margin-bottom: 5px;
 }
 
 .post p {
@@ -70,70 +66,37 @@
     line-height: 1.5;
 }
 
-
 .post-image {
     max-width: 100%; 
-    width: 550px; 
+    width: 400px; 
     height: auto; 
     border-radius: 10px; 
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 10px; 
 }
+
 
 .post-meta {
     font-size: 14px;
     color: #666;
     margin-top: -12px;
-    margin-left: 55px;
+    margin-left: 61px;
 }
-
 .post-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 5px;
 }
 
-/* Avatar của user */
 .post-avatar {
-    width: 55px;  
-    height: 55px;
-    border-radius: 50%;  
-    object-fit: cover;
-    border: 2px solid #ddd; /* Viền nhẹ hơn */
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #ccc;
 }
-
-/* Tên người đăng */
 .post-author {
     font-weight: bold;  
     text-transform: uppercase;  
     font-size: 1.2rem;  
     color: #333;  
-    margin-top: -13px;
-}
-.bar {
-    width: 50px;
-}
-.login-button {
-    display: inline-block;
-    background-color: #ffffff; /* Màu xanh dương */
-    color: rgb(0, 0, 0);
-    font-size: 18px;
-    font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.2s;
-    margin-right: 25px;
-}
-
-.login-button:hover {
-    background-color: #c6e2ff; /* Màu xanh đậm hơn khi hover */
-    transform: scale(1.05); /* Hiệu ứng phóng to nhẹ */
-}
-
-.login-button:active {
-    background-color: #82befd; /* Màu tối hơn khi click */
-    transform: scale(0.98); /* Hiệu ứng nhấn */
 }
