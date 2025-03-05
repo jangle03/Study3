@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
     <link rel="stylesheet" href="../src/css/link-menu.css">
+    <link rel="stylesheet" href="../src/css/blog-index.css">
 </head>
 
 <body>

@@ -44,13 +44,15 @@ $posts = $db->select('blog');
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
     <link rel="stylesheet" href="../src/css/link-menu.css">
+    <link rel="stylesheet" href="../src/css/post_management.css">
+
 </head>
 
 <body>
 
     <?php include '../includes/header.php' ?>
 
-    <div class="container">
+    <div class="container2">
         <p><a href="javascript:history.back()" class="btn btn-primary">Quay trở về</a></p>
         <h1>Post Management</h1>
         <table border="1px">
