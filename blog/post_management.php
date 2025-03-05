@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (isset($_POST['approve'])) {
         $db->approveBlogPost($_POST['id']);
     } elseif (isset($_POST['unapprove'])) {
-        $db->update('blog', ['status' => -1], ['id' => $_POST['id']]);
+        $db->unapproveBlogPost($_POST['id']);
     }
 }
 $posts = $db->select('blog');
@@ -51,6 +51,7 @@ $posts = $db->select('blog');
     <?php include '../includes/header.php' ?>
 
     <div class="container">
+        <p><a href="javascript:history.back()" class="btn btn-primary">Quay trở về</a></p>
         <h1>Post Management</h1>
         <table border="1px">
             <thead>
@@ -58,28 +59,50 @@ $posts = $db->select('blog');
                     <th>STT</th>
                     <th>Tiêu đề</th>
                     <th>Ngày đăng</th>
+                    <th>Người đăng</th>
                     <th>Thao tác</th>
+                    <th>Xem chi tiết</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($posts as $index => $post): ?>
+                <?php foreach ($posts as $index => $post): 
+                    $author = $db->find('users', $post['id_users'])[0];
+                ?>
                     <tr>
                         <td><?php echo $index + 1; ?></td>
-                        <td><?php echo htmlspecialchars($post['title']); ?></td>
-                        <td><?php echo htmlspecialchars($post['created_at']); ?></td>
+                        <td><?php echo ($post['title']); ?></td>
+                        <td><?php echo ($post['created_at']); ?></td>
+                        <td><?php echo ($author['username']); ?></td>
                         <td>
-                            <form method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                                <button type="submit" name="approve" class="btn btn-success">Duyệt</button>
-                            </form>
-                            <form method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                                <button type="submit" name="unapprove" class="btn btn-warning">Không duyệt</button>
-                            </form>
-                            <form method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                                <button type="submit" name="delete" class="btn btn-danger">Xóa</button>
-                            </form>
+                            <?php if ($post['status'] == 1): ?>
+                                <span>Đã duyệt</span>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                    <button type="submit" name="delete" class="btn btn-danger">Xóa</button>
+                                </form>
+                            <?php elseif ($post['status'] == -1): ?>
+                                <span>Không duyệt</span>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                    <button type="submit" name="delete" class="btn btn-danger">Xóa</button>
+                                </form>
+                            <?php else: ?>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                    <button type="submit" name="approve" class="btn btn-success">Duyệt</button>
+                                </form>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                    <button type="submit" name="unapprove" class="btn btn-warning">Không duyệt</button>
+                                </form>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                    <button type="submit" name="delete" class="btn btn-danger">Xóa</button>
+                                </form>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Xem chi tiết</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -89,30 +112,8 @@ $posts = $db->select('blog');
 
     <?php include '../includes/footer.php' ?>
 
-    <script>
-        function Logout() {
-            const menuToggle = document.querySelector('.header-menu-toggle');
-            const links = document.querySelector('.header-links');
-            const icon = menuToggle.querySelector('i');
-            links.classList.remove('active');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this action!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, log out!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
 
-                    window.location.href = '../logout/';
-                }
-            });
-        }
-    </script>
+    
 </body>
 
 </html>

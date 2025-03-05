@@ -18,11 +18,13 @@
 <div class="container">
 
     <div class="content">
+ 
         <h2>Bản tin</h2>
         <?php if ($_SESSION['username'] === 'admin'): ?>
             <a href="post_management.php" class="btn btn-primary mb-3">Post Management.</a>
         <?php endif; ?>
-        <a href="add.php" class="btn btn-primary mb-3">Add User</a>
+        <a href="add.php" class="btn btn-primary mb-3">Add Blog</a>
+        <a href="list.php" class="btn btn-primary mb-3">List my Blog</a>
         <?php
         require_once '../config.php';
         $db = new Database();
@@ -38,16 +40,17 @@
         ?>
         <?php foreach ($posts as $post): ?>
             <div class="post">
-                <h3><?php echo htmlspecialchars($post['title']); ?></h3>
-                <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
+                <h3><?php echo ($post['title']); ?></h3>
+                <p><?php echo ($post['content']); ?></p>
                 <?php if ($post['image']): ?>
-                    <img src="<?php echo htmlspecialchars($post['image']); ?>" alt="Post Image" style="max-width: 100%;">
+                    <img src="<?php echo ($post['image']); ?>" alt="Post Image" style="max-width: 100%;">
                 <?php endif; ?>
-                <p><em>Đăng bởi: <?php echo htmlspecialchars($usernames[$post['id_users']]); ?> vào <?php echo htmlspecialchars($post['created_at']); ?></em></p>
+                <p><em>Đăng bởi: <?php echo ($usernames[$post['id_users']]); ?> vào <?php echo ($post['created_at']); ?></em></p>
             </div>
         <?php endforeach; ?>
     </div>
 </div>
+
 
 </body>
 </html>

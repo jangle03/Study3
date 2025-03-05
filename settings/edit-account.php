@@ -13,7 +13,6 @@ $user = $query->find('users', $id);
 if ($user) {
     $user = $user[0];
 } else {
-    // Handle case where user is not found
     header("Location: users.php");
     exit;
 }
@@ -34,12 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $profile_picture = $user['profile_picture'];
     }
 
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
     $query->update('users', [
         'first_name' => $first_name,
         'last_name' => $last_name,
         'email' => $email,
         'username' => $username,
-        'password' => $password,
+        'password' => $hashed_password,
         'profile_picture' => $profile_picture
     ], 'id = ?', [$id], 'i');
 
