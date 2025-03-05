@@ -292,4 +292,13 @@ class Database
         $stmt->execute();
         $stmt->close();
     }
+
+    public function unapproveBlogPost($id)
+    {
+        $sql = "UPDATE blog SET status = -1 WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+    }
 }

@@ -19,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['add'])) {
         $db->addBlogPost($_POST['title'], $_POST['content'], $_SESSION['user_id'], $imagePath);
+        header("Location: index.php");
+        exit();
     } elseif (isset($_POST['update'])) {
         $db->updateBlogPost($_POST['id'], $_POST['title'], $_POST['content'], $imagePath);
     } elseif (isset($_POST['delete'])) {
@@ -49,6 +51,7 @@ $posts = $db->select('blog');
     <?php include '../includes/header.php' ?>
 
     <div class="container">
+    <p><a href="javascript:history.back()" class="btn btn-primary">Quay trở về</a></p>
         <h1>Blog</h1>
         <form method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="">
@@ -62,30 +65,6 @@ $posts = $db->select('blog');
 
     <?php include '../includes/footer.php' ?>
 
-    <script>
-        function Logout() {
-            const menuToggle = document.querySelector('.header-menu-toggle');
-            const links = document.querySelector('.header-links');
-            const icon = menuToggle.querySelector('i');
-            links.classList.remove('active');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this action!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, log out!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    window.location.href = '../logout/';
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>
