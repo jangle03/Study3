@@ -56,7 +56,7 @@ $posts = $db->select('blog');
     <div class="sidebar">
         <h2>Menu</h2>
         <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Home Blog</a></li>
                 <?php if ($_SESSION['username'] === 'admin'): ?>
                     <li><a href="post_management.php">Post Management</a></li>
                 <?php endif; ?>
@@ -68,7 +68,7 @@ $posts = $db->select('blog');
 
     <div class="content">
     <!-- <p><a href="javascript:history.back()" class="btn btn-primary">Quay trở về</a></p> -->
-        <h1>New postpost</h1>
+        <h1>New post</h1>
     <form method="post" enctype="multipart/form-data" class="blog-form">
         <input type="hidden" name="id" value="">
 

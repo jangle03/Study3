@@ -58,7 +58,7 @@ $posts = $db->select('blog');
         <div class="sidebar">
             <h2>Menu</h2>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Home Blog</a></li>
                 <?php if ($_SESSION['username'] === 'admin'): ?>
                     <li><a href="post_management.php">Post Management</a></li>
                 <?php endif; ?>
@@ -74,11 +74,11 @@ $posts = $db->select('blog');
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Tiêu đề</th>
-                        <th>Ngày đăng</th>
-                        <th>Người đăng</th>
-                        <th>Thao tác</th>
-                        <th>Xem chi tiết</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>User name</th>
+                        <th>Status</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -34,7 +34,7 @@ $posts = $db->select('blog', '*', 'WHERE id_users = ' . $user_id);
         <div class="sidebar">
             <h2>Menu</h2>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Home Blog</a></li>
                 <?php if ($_SESSION['username'] === 'admin'): ?>
                     <li><a href="post_management.php">Post Management</a></li>
                 <?php endif; ?>
@@ -51,10 +51,10 @@ $posts = $db->select('blog', '*', 'WHERE id_users = ' . $user_id);
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Tiêu đề</th>
-                        <th>Ngày đăng</th>
-                        <th>Trạng thái</th>
-                        <th>Xem chi tiết</th>
+                        <th>TitleTitle</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,16 +65,16 @@ $posts = $db->select('blog', '*', 'WHERE id_users = ' . $user_id);
                             <td><?php echo ($post['created_at']); ?></td>
                             <td>
                                 <?php if ($post['status'] == 1): ?>
-                                    <span>Đã duyệt</span>
+                                    <span>Approved</span>
                                 <?php elseif ($post['status'] == -1): ?>
-                                    <span>Không duyệt</span>
+                                    <span>Disapprove</span>
                                 <?php else: ?>
-                                    <span>Chờ duyệt</span>
-                                    <a href="edit_post.php?id=<?php echo $post['id']; ?>" class="btn btn-warning">Sửa</a>
+                                    <span>Waiting</span>
+                                    <a href="edit_post.php?id=<?php echo $post['id']; ?>" class="btn btn-warning">Edit</a>
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Xem chi tiết</a>
+                                <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Details</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
