@@ -20,7 +20,7 @@
     <div class="sidebar">
         <h2>Menu</h2>
         <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Home Blog</a></li>
                 <?php if ($_SESSION['username'] === 'admin'): ?>
                     <li><a href="post_management.php">Post Management</a></li>
                 <?php endif; ?>

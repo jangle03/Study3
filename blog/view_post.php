@@ -37,10 +37,10 @@ $avatar = !empty($author['profile_picture']) ? $author['profile_picture'] : 'def
 <body>
 <?php include '../includes/header.php'; ?>
 <div class="container">
-<div class="sidebar">
+        <div class="sidebar">
             <h2>Menu</h2>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Home Blog</a></li>
                 <?php if ($_SESSION['username'] === 'admin'): ?>
                     <li><a href="post_management.php">Post Management</a></li>
                 <?php endif; ?>
@@ -54,8 +54,8 @@ $avatar = !empty($author['profile_picture']) ? $author['profile_picture'] : 'def
         <div class="post">
             <div class="post-header">
             <img src="../src/images/profile-image/<?php echo htmlspecialchars($userProfiles[$post['id_users']]['profile_picture']); ?>" 
-     alt="Profile Image" class="post-avatar"
-     onerror="this.onerror=null;this.src='../src/images/profile-image/default.png';">
+            alt="Profile Image" class="post-avatar"
+            onerror="this.onerror=null;this.src='../src/images/profile-image/default.png';">
 
 
                 <div>
@@ -68,10 +68,10 @@ $avatar = !empty($author['profile_picture']) ? $author['profile_picture'] : 'def
             <h3><?php echo htmlspecialchars($post['title']); ?></h3>
             <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
             <?php if ($post['image']): ?>
-    <img src="<?php echo htmlspecialchars($post['image']); ?>" 
-         alt="Post Image" class="post-image"
-         onerror="this.onerror=null;this.src='../src/images/blog/default-post.png';">
-<?php endif; ?>
+            <img src="<?php echo htmlspecialchars($post['image']); ?>" 
+            alt="Post Image" class="post-image"
+            onerror="this.onerror=null;this.src='../src/images/blog/default-post.png';">
+            <?php endif; ?>
 
         </div>
     </div>
