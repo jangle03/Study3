@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $username = $_POST['username'];
-    // $password = $_POST['password'];
     if (!empty($_POST['password'])) {
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     } else {
@@ -38,8 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $profile_picture = $user['profile_picture'];
     }
-
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $query->update('users', [
         'first_name' => $first_name,
@@ -113,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-group">
                 <label>New Password:</label>
-                <input type="password" class="form-control" id="password" name="password" value="<?php echo htmlspecialchars($user['password'] ?? ''); ?>" required>
+                <input type="password" class="form-control" id="password" name="password">
 
             </div>
             <button type="submit" class="btn btn-primary">Save Changes</button>
