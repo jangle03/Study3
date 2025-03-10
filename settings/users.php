@@ -64,7 +64,7 @@ $user = $query->select('users');
                             <td>
                                 <a href="edit-account.php?id=<?= $u['id'] ?>" class="btn btn-success">Sửa</a>
                                 <?php if ($u['username'] !== 'admin'): ?>
-                                    <a href="xoa_tai_khoan.php?id=<?= $u['id'] ?>" class="btn btn-danger">Xóa</a>
+                                    <a href="delete-account.php?id=<?= $u['id'] ?>" class="btn btn-danger">Xóa</a>
                                 <?php endif; ?>
                             </td>
 
