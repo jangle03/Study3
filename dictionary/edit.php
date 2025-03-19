@@ -1,6 +1,7 @@
 <?php
 include '../check.php';
 
+
 $userId = $_SESSION['user_id'];
 $word_id = $_GET['word_id'] ? (int) $_GET['word_id'] : 0;
 
