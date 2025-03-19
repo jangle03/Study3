@@ -1,10 +1,12 @@
 <?php
 include '../check.php';
 
+
 $userId = $_SESSION['user_id'];
 $word_id = $_GET['word_id'] ? (int) $_GET['word_id'] : 0;
 
 $word = $query->select('words', '*', "WHERE user_id = ? AND id = ?", [$userId, $word_id], "ii")[0];
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updatedWord = $_POST['word'];
