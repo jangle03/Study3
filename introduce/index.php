@@ -4,149 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study3 - Trang chủ</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            display: flex;
-            margin: auto;
-            padding: 20px;
-        }
-        .sidebar {
-            width: 20%;
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-right: 10px;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar li {
-            background-color: #e0e0e0;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
-        .sidebar li:hover {
-            background-color: #d0d0d0;
-        }
-        .sidebar a {
-            text-decoration: none;
-            color: #333;
-            display: block;
-        }
-        .content {
-            flex-grow: 1;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .post {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
-        .like-btn {
-            padding: 5px 10px;
-            background-color: #2F4F4F;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .like-btn:hover {
-            background-color: #0056b3;
-        }
-        .bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #2F4F4F;
-            padding: 10px 20px;
-            color: white;
-            font-size: 20px;
-        }
-        .site-name {
-            font-weight: bold;
-            margin: 0;
-        }
-        .login-button {
-            padding: 8px 15px;
-            background-color: white;
-            color: #007bff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .login-button:hover {
-            background-color: #f0f0f0;
-        }
-    </style>
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/root.css">
+    <link rel="stylesheet" href="../src/css/index_intro.css">
+    <!-- <link rel="stylesheet" href="../src/css/blog-index.css"> -->
+    <link rel="stylesheet" href="../src/css/header.css">
+
 </head>
 <body>
-
-<div class="bar">
-    <p class="site-name">Study3</p>
+<header>
+    <a href="../">
+        <img src="../src/images/logo.png" alt="logo" class="header-logo">
+    </a>
     <a href="/login/" class="login-button">Login</a>
-    <!-- <a href="../login/index.php" class="login-button">Login</a> -->
-</div>
+</header>
+
 
 <div class="container">
-    <div class="sidebar">
-        <h3>Danh mục</h3>
-        <ul>
-            <li><a href="#">Trang chủ</a></li>
-            <li><a href="khoahoc.php">Khóa học</a></li>
-            <li><a href="#">Lịch thi</a></li>
-            <li><a href="#">Tài liệu học tập</a></li>
-            <li><a href="#">Sự kiện</a></li>
-            <li><a href="#">Hỗ trợ</a></li>
-        </ul>
-    </div>
-
     <div class="content">
-        <h2>Bản tin</h2>
+        <!-- <h2>Newsletter</h2> -->
+        <?php
+            require_once '../config.php';
+            $db = new Database();
+            $posts = $db->select('blog', '*', 'WHERE status = 1');
+
+            if (!$posts) {
+                echo "<p>Không có bài đăng nào.</p>";
+            }
+
+            foreach ($posts as $post): 
+                $author = $db->find('users', $post['id_users'])[0];
+                $avatar = !empty($author['profile_picture']) ? $author['profile_picture'] : 'default.png';
+
+            ?>
         <div class="post">
-            <p><strong>📢 Admin:</strong> Tuyển dụng vị trí Front End Developer</p>
-            <h5>Chi tiết tin tuyển dụng</h5>
-            <p>- Phát triển & Triển khai sản phẩm: Dẫn dắt quá trình nghiên cứu, phát triển và ra mắt các tính năng AI, đảm bảo sản phẩm đáp ứng nhu cầu kinh doanh và người dùng.
-                <br>- Xây dựng & Cải tiến tính năng AI: Phát triển và tối ưu hóa các tính năng AI trong giáo dục (AI Tutor, chấm điểm tự động, phân tích phát âm) và vận hành (AI hỗ trợ chăm sóc khách hàng, giám sát chất lượng giảng dạy...
-                - Xây dựng KPIs và mục tiêu phù hợp với chiến lược chung của công ty.
-                <br>- Phối hợp cross-function team: Làm việc cùng tech team (AI engineer, BE, FE, QA, design) và Trung tâm Học thuật & Vận hành để đảm bảo chất lượng sản phẩm.
-                <br>- Xây dựng roadmap sản phẩm dựa trên mục tiêu kinh doanh, xu hướng thị trường và công nghệ
-                <br>- Nghiên cứu & Phân tích dữ liệu:
-                <br>- Thu thập phản hồi từ người dùng, đối tác và phân tích dữ liệu để liên tục cải thiện sản phẩm
-                <br>- Theo dõi và phân tích xu hướng thị trường, công nghệ mới, đặc biệt là các tiến bộ trong LLM/AGI để duy trì tính cạnh tranh và tiên tiến của sản phẩm</p>
-            <button class="like-btn">Thích</button>
+    <div class="post-header">
+        <img src="../src/images/profile-image/<?php echo htmlspecialchars($avatar); ?>" 
+            alt="Profile Image" class="post-avatar">
+        <div style="margin-top: -13px;">
+            <span class="post-author" ><?php echo strtoupper(htmlspecialchars($author['username'])); ?></span>
+            
         </div>
-        <div class="post">
-            <p><strong>📝 User A:</strong> nguyễn văn A, thi TOEIC ngày X...</p>
-            <button class="like-btn">Thích</button>
-        </div>
-        <div class="post">
-            <p><strong>📢 Admin:</strong> Tuyển dụng vị trí Front End Developer</p>
-            <h5>Chi tiết tin tuyển dụng</h5>
-            <p>- Phát triển & Triển khai sản phẩm: Dẫn dắt quá trình nghiên cứu, phát triển và ra mắt các tính năng AI, đảm bảo sản phẩm đáp ứng nhu cầu kinh doanh và người dùng.
-                <br>- Xây dựng & Cải tiến tính năng AI: Phát triển và tối ưu hóa các tính năng AI trong giáo dục (AI Tutor, chấm điểm tự động, phân tích phát âm) và vận hành (AI hỗ trợ chăm sóc khách hàng, giám sát chất lượng giảng dạy...
-                - Xây dựng KPIs và mục tiêu phù hợp với chiến lược chung của công ty.
-                <br>- Phối hợp cross-function team: Làm việc cùng tech team (AI engineer, BE, FE, QA, design) và Trung tâm Học thuật & Vận hành để đảm bảo chất lượng sản phẩm.
-                <br>- Xây dựng roadmap sản phẩm dựa trên mục tiêu kinh doanh, xu hướng thị trường và công nghệ
-                <br>- Nghiên cứu & Phân tích dữ liệu:
-                <br>- Thu thập phản hồi từ người dùng, đối tác và phân tích dữ liệu để liên tục cải thiện sản phẩm
-                <br>- Theo dõi và phân tích xu hướng thị trường, công nghệ mới, đặc biệt là các tiến bộ trong LLM/AGI để duy trì tính cạnh tranh và tiên tiến của sản phẩm</p>
-            <button class="like-btn">Thích</button>
-        </div>
+    </div>
+    <p class="post-meta" style="font-size: 12px; color: #666; margin-top: -16px; margin-left: 65px;">
+   <?php echo htmlspecialchars($post['created_at']); ?>
+</p>
+
+
+    <h3><?php echo htmlspecialchars($post['title']); ?></h3>
+    <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
+    
+    <?php if ($post['image']): ?>
+        <img src="<?php echo htmlspecialchars($post['image']); ?>" alt="Post Image" class="post-image">
+    <?php endif; ?>
+</div>
+
+    <?php endforeach; ?>
+
     </div>
 </div>
 
+<?php include '../includes/footer.php' ?>
 </body>
 </html>

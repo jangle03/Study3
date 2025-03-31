@@ -5,10 +5,10 @@ class Database
 
     public function __construct()
     {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "english";
+        $servername = "160-191-244-99.cprapid.com";
+        $username = "aerinidv_khanhhuyen";
+        $password = "khanhhuyen2412";
+        $dbname = "aerinidv_english";
 
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -255,5 +255,50 @@ class Database
         } else {
             die("SQL execute error: " . $stmt->error);
         }
+    }
+
+    public function addBlogPost($title, $content, $userId, $image = null)
+    {
+        $sql = "INSERT INTO blog (title, content, id_users, image) VALUES (?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssis", $title, $content, $userId, $image);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function updateBlogPost($id, $title, $content, $image = null)
+    {
+        $sql = "UPDATE blog SET title = ?, content = ?, image = ? WHERE id = ? AND status = 0";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("sssi", $title, $content, $image, $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function deleteBlogPost($id)
+    {
+        $sql = "DELETE FROM blog WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function approveBlogPost($id)
+    {
+        $sql = "UPDATE blog SET status = 1 WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function unapproveBlogPost($id)
+    {
+        $sql = "UPDATE blog SET status = -1 WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
     }
 }

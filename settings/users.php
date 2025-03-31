@@ -1,3 +1,4 @@
+
 <?php include '../check.php'; ?>
 <?php include '../last_page.php';
 
@@ -18,49 +19,19 @@ $user = $query->select('users');
     <title>User List</title>
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .table {
-            background-color: #fff;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    <link rel="stylesheet" href="../src/css/setting-users.css">
 
-        .table th {
-            background-color: #2f4f4f;
-            color: white;
-        }
-
-        .table td {
-            vertical-align: middle;
-        }
-
-        .profile-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid #2f4f4f;
-        }
-
-        .header-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-    </style>
+    
 </head>
 
 <body>
 
     <?php include '../includes/header.php'; ?>
 
-    <div class="container">
+    <div class="container2">
         <h2 class="header-title">User List</h2>
         <?php if ($_SESSION['username'] === 'admin'): ?>
-            <a href="them_tai_khoan.php" class="btn btn-primary mb-3">Add User</a>
+            <a href="create-account.php" class="btn btn-primary mb-3">Add User</a>
         <?php endif; ?>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
@@ -84,13 +55,16 @@ $user = $query->select('users');
                             <td><?php echo htmlspecialchars($u['email']); ?></td>
                             <td><?php echo htmlspecialchars($u['username']); ?></td>
                             <td class="text-center">
-                                <img src="../src/images/profile-image/<?php echo htmlspecialchars($u['profile_picture']); ?>" alt="Profile Image" class="profile-img">
+                            <img src="../src/images/profile-image/<?php echo htmlspecialchars($u['profile_picture']); ?>" 
+                                alt="Profile Image" class="profile-img"
+                                onerror="this.onerror=null;this.src='../src/images/profile-image/default.png';">
                             </td>
+
                             <td><?php echo htmlspecialchars($u['created_at']); ?></td>
                             <td>
-                                <a href="sua_tai_khoan.php?id=<?= $u['id'] ?>" class="btn btn-success">Sửa</a>
+                                <a href="edit-account.php?id=<?= $u['id'] ?>" class="btn btn-success">Sửa</a>
                                 <?php if ($u['username'] !== 'admin'): ?>
-                                    <a href="xoa_tai_khoan.php?id=<?= $u['id'] ?>" class="btn btn-danger">Xóa</a>
+                                    <a href="delete-account.php?id=<?= $u['id'] ?>" class="btn btn-danger">Xóa</a>
                                 <?php endif; ?>
                             </td>
 
@@ -109,3 +83,6 @@ $user = $query->select('users');
 </body>
 
 </html>
+
+
+
