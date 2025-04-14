@@ -25,6 +25,11 @@
             <span>Home</span>
         </a>
 
+        <a href="../vocabularybytopic/" class="header-link">
+            <i class="fas fa-language"></i>
+            <span>Vocabulary by topic</span>
+        </a>
+
         <a href="../dictionary/" class="header-link">
             <i class="fas fa-language"></i>
             <span>Dictionary</span>
@@ -59,6 +64,7 @@
         <ul>
             <li><a href="../"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="../dictionary/"><i class="fas fa-language"></i> Dictionary</a></li>
+            <li><a href="../vocabularybytopic/"><i class="fas fa-language"></i> Vocabulary by topic</a></li>
             <li><a href="../sentences/"><i class="fas fa-comment-dots"></i> Sentences</a></li>
             <li><a href="../texts/"><i class="fas fa-book link-icon"></i>Texts</a></li>
             <li><a href="../exercise/"><i class="fas fa-brain"></i> Exercise</a></li>
