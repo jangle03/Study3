@@ -36,11 +36,11 @@ $posts = $db->select('blog', '*', 'WHERE id_users = ' . $user_id);
             <ul>
                 <li><a href="index.php">Home Blog</a></li>
                 <?php if ($_SESSION['username'] === 'admin'): ?>
-                    <li><a href="post_management.php">Post Management</a></li>
+                <li><a href="post_management.php">Post Management</a></li>
                 <?php endif; ?>
                 <li><a href="add.php">Add Blog</a></li>
                 <li><a href="list.php">List my Blog</a></li>
-                
+
             </ul>
         </div>
 
@@ -51,7 +51,7 @@ $posts = $db->select('blog', '*', 'WHERE id_users = ' . $user_id);
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>TitleTitle</th>
+                        <th>Title</th>
                         <th>Date</th>
                         <th>Status</th>
                         <th>Details</th>
@@ -59,24 +59,24 @@ $posts = $db->select('blog', '*', 'WHERE id_users = ' . $user_id);
                 </thead>
                 <tbody>
                     <?php foreach ($posts as $index => $post): ?>
-                        <tr>
-                            <td><?php echo $index + 1; ?></td>
-                            <td><?php echo ($post['title']); ?></td>
-                            <td><?php echo ($post['created_at']); ?></td>
-                            <td>
-                                <?php if ($post['status'] == 1): ?>
-                                    <span>Approved</span>
-                                <?php elseif ($post['status'] == -1): ?>
-                                    <span>Disapprove</span>
-                                <?php else: ?>
-                                    <span>Waiting</span>
-                                    <a href="edit_post.php?id=<?php echo $post['id']; ?>" class="btn btn-warning">Edit</a>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Details</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td><?php echo $index + 1; ?></td>
+                        <td><?php echo ($post['title']); ?></td>
+                        <td><?php echo ($post['created_at']); ?></td>
+                        <td>
+                            <?php if ($post['status'] == 1): ?>
+                            <span>Approved</span>
+                            <?php elseif ($post['status'] == -1): ?>
+                            <span>Not approved</span>
+                            <?php else: ?>
+                            <span>Pending approval</span>
+                            <a href="edit_post.php?id=<?php echo $post['id']; ?>" class="btn btn-warning">Edit</a>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Details</a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
