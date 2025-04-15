@@ -26,7 +26,7 @@
         </a>
 
         <a href="../vocabularybytopic/" class="header-link">
-            <i class="fas fa-language"></i>
+            <i class="fas fa-book"></i>
             <span>Vocabulary by topic</span>
         </a>
 
@@ -41,7 +41,7 @@
         </a>
 
         <a href="../texts/" class="header-link">
-            <i class="fas fa-book link-icon"></i>
+            <i class="fa-solid fa-text-height"></i>
             <span class="link-text">Texts</span>
         </a>
 
@@ -50,7 +50,7 @@
             <span>Exercise</span>
         </a>
         <a href="../blog/" class="header-link">
-            <i class="fas fa-brain"></i>
+            <i class="fa-solid fa-blog"></i>
             <span>Post Blog</span>
         </a>
         <a href="../settings/" class="header-link">
@@ -64,11 +64,11 @@
         <ul>
             <li><a href="../"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="../dictionary/"><i class="fas fa-language"></i> Dictionary</a></li>
-            <li><a href="../vocabularybytopic/"><i class="fas fa-language"></i> Vocabulary by topic</a></li>
+            <li><a href="../vocabularybytopic/"><i class="fas fa-book"></i> Vocabulary by topic</a></li>
             <li><a href="../sentences/"><i class="fas fa-comment-dots"></i> Sentences</a></li>
-            <li><a href="../texts/"><i class="fas fa-book link-icon"></i>Texts</a></li>
+            <li><a href="../texts/"><i class="fa-solid fa-text-height"></i>Texts</a></li>
             <li><a href="../exercise/"><i class="fas fa-brain"></i> Exercise</a></li>
-            <li><a href="../blog/"><i class="fas fa-brain"></i> Blog</a></li>
+            <li><a href="../blog/"><i class="fa-solid fa-blog"></i> Blog</a></li>
             <li><a href="../settings/"><i class="fa-solid fa-gear"></i> Settings</a></li>
         </ul>
     </nav>

@@ -1,39 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
 
-*{
+* {
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Đảm bảo layout toàn trang */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Wrapper chứa toàn bộ nội dung */
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nội dung chính */
+main {
+    flex: 1;
+}
+
+/* FOOTER STYLING */
 footer {
-    position: static !important;
-    bottom: 0;
     width: 100%;
     background-color: #0047ab;
     color: #fff;
-    padding: 20px 0px 15px 0px;
+    padding: 20px 0 15px 0;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.container {
-    width: calc(100% - 40px);
-    /* max-width: 800px; */
-    /* margin: 20px auto; */
-    /* padding: 20px; */
-    box-sizing: border-box;
-    min-height: calc(100vh - 170px);
-}
-
-footer {
-    position: static !important;
-    display: block;
+    margin-top: auto; /* Đẩy footer xuống cuối */
 }
 
 footer .footer {
-    display: block;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
 }
 
 footer p {
@@ -59,15 +70,15 @@ footer a i {
     font-size: 19px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
     footer {
-        margin: 0 auto;
-        padding: 11px 0px 7px 0px;
+        padding: 11px 0 7px 0;
     }
 
     footer p {
         line-height: 1.5;
-        margin: 3px 0px;
+        margin: 3px 0;
         font-size: 13px;
     }
 
