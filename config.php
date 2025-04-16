@@ -261,14 +261,19 @@ class Database
         }
     }
 
-    public function addBlogPost($title, $content, $userId, $image = null)
-    {
-        $sql = "INSERT INTO blog (title, content, id_users, image) VALUES (?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ssis", $title, $content, $userId, $image);
+    public function addBlogPost($title, $content, $userId, $imagePath, $status = 0) {
+        $stmt = $this->conn->prepare("INSERT INTO blog (title, content, id_users, image, status) VALUES (?, ?, ?, ?, ?)");
+    
+        if (!$stmt) {
+            die("SQL error: " . $this->conn->error);
+        }
+    
+        $stmt->bind_param("ssisi", $title, $content, $userId, $imagePath, $status);
         $stmt->execute();
         $stmt->close();
     }
+    
+    
 
     public function updateBlogPost($id, $title, $content, $image = null)
     {
