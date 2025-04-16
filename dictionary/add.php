@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
     <link rel="stylesheet" href="../src/css/add.css">
+    <!-- <link rel="stylesheet" href="../src/css/add-sentences.css"> -->
 </head>
 
 <body>
@@ -55,7 +56,7 @@
                         <label for="definition">Definition</label>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <button type="submit">Add Word</button>
                 </div>

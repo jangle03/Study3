@@ -1,57 +1,61 @@
 $(document).ready(function () {
-    // Gán sự kiện khi form được gửi
     $('#addTopicForm').on('submit', function (e) {
         e.preventDefault();
 
-        // Vô hiệu hóa nút submit để tránh gửi nhiều lần
-        $('button[type="submit"]').prop('disabled', true);
+        const submitBtn = $('button[type="submit"]');
+        submitBtn.prop('disabled', true);
 
-        // Sử dụng FormData để gửi dữ liệu bao gồm cả file
-        var formData = new FormData(this);
+        const formData = new FormData(this);
 
-        // Thực hiện AJAX để gửi form
         $.ajax({
             url: 'add-topic.php',
             type: 'POST',
             data: formData,
-            processData: false, // Không xử lý dữ liệu
-            contentType: false, // Không thiết lập content-type
+            processData: false,
+            contentType: false,
             success: function (response) {
-                var res = JSON.parse(response); // Phân tích dữ liệu JSON
+                let res;
+                try {
+                    res = JSON.parse(response);
+                } catch (e) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Response parsing error.',
+                        text: 'Invalid server response.',
+                    });
+                    submitBtn.prop('disabled', false);
+                    return;
+                }
 
                 if (res.success) {
-                    // Hiển thị thông báo thành công
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
                         title: res.message,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1800
                     }).then(() => {
-                        // Chuyển hướng về trang danh sách chủ đề
+                        $('#addTopicForm')[0].reset();
                         window.location.href = 'index.php';
                     });
                 } else {
-                    // Hiển thị thông báo lỗi
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Lỗi',
-                        text: res.message,
+                        icon: 'warning',
+                        title: 'Notification.',
+                        text: res.message
                     }).then(() => {
-                        // Bật lại nút submit
-                        $('button[type="submit"]').prop('disabled', false);
+                        $('#addTopicForm')[0].reset(); 
+                        submitBtn.prop('disabled', false);
                     });
                 }
             },
             error: function () {
-                // Hiển thị thông báo nếu có lỗi khi gửi form
                 Swal.fire({
                     icon: 'error',
-                    title: 'Lỗi',
-                    text: 'Có lỗi xảy ra khi gửi form.',
-                }).then(() => {
-                    $('button[type="submit"]').prop('disabled', false);
+                    title: 'Error.',
+                    text: 'Form could not be submitted. Please try again.'
                 });
+                submitBtn.prop('disabled', false);
             }
         });
     });

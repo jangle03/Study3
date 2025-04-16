@@ -1,7 +1,6 @@
 <?php
-session_start(); // Đảm bảo session đã được bắt đầu
+session_start();
 
-// Kết nối cơ sở dữ liệu
 $conn = new mysqli("localhost", "root", "", "aerinidv_english");
 $conn->set_charset("utf8");
 
@@ -25,11 +24,11 @@ if (isset($_SESSION['username'])) {
         $stmt->bind_result($user_id);
         $stmt->fetch();
     } else {
-        echo "Lỗi: Người dùng không tồn tại.";
+        echo "Error: User does not exist.";
         exit;
     }
 } else {
-    echo "Lỗi: Người dùng chưa đăng nhập.";
+    echo "Error: User is not logged in.";
     exit;
 }
 
@@ -47,8 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Kiểm tra nếu chủ đề và từ vựng không rỗng
     if (!empty($topic_id) && !empty($vocabulary) && !empty($meaning)) {
         // Chèn từ vựng vào cơ sở dữ liệu
+        // $sql = "INSERT INTO topic_words (tu_vung_chu_de, nghia_tieng_viet, id_users, trang_thai, ngay_them, id_topic) 
+        //         VALUES (?, ?, ?, 0, NOW(), ?)";
+        // Nếu là admin, đặt trạng thái đã duyệt (1), ngược lại là chờ duyệt (0)
+        $is_admin = ($username === 'admin') ? 1 : 0;
+
         $sql = "INSERT INTO topic_words (tu_vung_chu_de, nghia_tieng_viet, id_users, trang_thai, ngay_them, id_topic) 
-                VALUES (?, ?, ?, 0, NOW(), ?)";
+        VALUES (?, ?, ?, ?, NOW(), ?)";
+
 
         $stmt = $conn->prepare($sql);
 
@@ -57,16 +62,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Bind các tham số vào câu lệnh
-        $stmt->bind_param("ssis", $vocabulary, $meaning, $user_id, $topic_id);
+        // $stmt->bind_param("ssis", $vocabulary, $meaning, $user_id, $topic_id);
+        $stmt->bind_param("ssisi", $vocabulary, $meaning, $user_id, $is_admin, $topic_id);
+
 
         // Thực thi câu lệnh SQL
         if ($stmt->execute()) {
-            $response = ['success' => true, 'message' => 'Từ vựng đã được thêm thành công!'];
+            $response = ['success' => true, 'message' => 'Vocabulary added successfully!'];
         } else {
-            $response = ['success' => false, 'message' => 'Lỗi: ' . $stmt->error];
+            $response = ['success' => false, 'message' => 'Error: ' . $stmt->error];
         }
     } else {
-        $response = ['success' => false, 'message' => 'Vui lòng nhập đầy đủ các trường.'];
+        $response = ['success' => false, 'message' => 'Please fill in all fields.'];
     }
 } else {
     $response = ['success' => false, 'message' => ''];
@@ -79,14 +86,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <title>Thêm Từ Vựng</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- SweetAlert2 -->
+    <title>Add vocabulary</title>
+    <link rel="icon" type="image/png" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/css/root.css">
+    <link rel="stylesheet" href="../src//css/add-sentences.css">
 </head>
 
 <body>
-    <h1>Thêm Từ Vựng</h1>
+    <?php include '../includes/header.php'; ?>
+    <h1>Add vocabulary</h1>
     <form method="POST" action="">
-        <label for="topic_id">Chủ Đề:</label>
+        <label for="topic_id">Topic:</label>
         <select name="topic_id" id="topic_id" required>
             <?php
             if ($result->num_rows > 0) {
@@ -94,38 +106,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "<option value='" . $row['id'] . "'>" . $row['topic_name'] . "</option>";
                 }
             } else {
-                echo "<option value=''>Không có chủ đề nào</option>";
+                echo "<option value=''>No topics yet.</option>";
             }
             ?>
         </select>
         <br><br>
 
-        <label for="vocabulary">Từ Vựng:</label>
+        <label for="vocabulary">Vocabulary:</label>
         <input type="text" id="vocabulary" name="vocabulary" required>
         <br><br>
 
-        <label for="meaning">Nghĩa:</label>
+        <label for="meaning">Meaning:</label>
         <textarea id="meaning" name="meaning" required></textarea>
         <br><br>
 
-        <button type="submit">Thêm</button>
+        <button type="submit">ADD VOCABULARY</button>
     </form>
+
 
     <script>
     <?php if ($response['message'] != ''): ?>
     // Hiển thị thông báo nếu có và chuyển hướng nếu thành công
     Swal.fire({
         icon: '<?php echo $response['success'] ? 'success' : 'error'; ?>',
-        title: '<?php echo $response['success'] ? 'Thành công!' : 'Có lỗi xảy ra!'; ?>',
+        title: '<?php echo $response['success'] ? 'Success!' : 'An error occurred!'; ?>',
         text: '<?php echo $response['message']; ?>',
     }).then((result) => {
         if (result.isConfirmed && <?php echo $response['success'] ? 'true' : 'false'; ?>) {
-            window.location.href = 'index-user.php';
+            window.location.href = 'index.php';
         }
     });
     <?php endif; ?>
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <?php include '../includes/footer.php'; ?>
 
 </body>
 

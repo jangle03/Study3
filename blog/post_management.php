@@ -53,18 +53,18 @@ $posts = $db->select('blog');
 <body>
 
     <?php include '../includes/header.php' ?>
-    
+
     <div class="container">
         <div class="sidebar">
             <h2>Menu</h2>
             <ul>
                 <li><a href="index.php">Home Blog</a></li>
                 <?php if ($_SESSION['username'] === 'admin'): ?>
-                    <li><a href="post_management.php">Post Management</a></li>
+                <li><a href="post_management.php">Post Management</a></li>
                 <?php endif; ?>
                 <li><a href="add.php">Add Blog</a></li>
                 <li><a href="list.php">List my Blog</a></li>
-                
+
             </ul>
         </div>
         <div class="content">
@@ -82,57 +82,57 @@ $posts = $db->select('blog');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($posts as $index => $post): 
+                    <?php foreach ($posts as $index => $post):
                         $author = $db->find('users', $post['id_users'])[0];
                     ?>
-                        <tr>
-                            <td><?php echo $index + 1; ?></td>
-                            <td><?php echo ($post['title']); ?></td>
-                            <td><?php echo ($post['created_at']); ?></td>
-                            <td><?php echo ($author['username']); ?></td>
-                            <td>
-                                <?php if ($post['status'] == 1): ?>
-                                    <span>Đã duyệt</span>
-                                    <form method="post" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                                        <button type="submit" name="delete" class="btn btn-danger">Xóa</button>
-                                    </form>
-                                <?php elseif ($post['status'] == -1): ?>
-                                    <span>Không duyệt</span>
-                                    <form method="post" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                                        <button type="submit" name="delete" class="btn btn-danger">Xóa</button>
-                                    </form>
-                                <?php else: ?>
-                                    <form method="post" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                                        <button type="submit" name="approve" class="btn btn-success">Duyệt</button>
-                                    </form>
-                                    <form method="post" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                                        <button type="submit" name="unapprove" class="btn btn-warning">Không duyệt</button>
-                                    </form>
-                                    <form method="post" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                                        <button type="submit" name="delete" class="btn btn-danger">Xóa</button>
-                                    </form>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Xem chi tiết</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td><?php echo $index + 1; ?></td>
+                        <td><?php echo ($post['title']); ?></td>
+                        <td><?php echo ($post['created_at']); ?></td>
+                        <td><?php echo ($author['username']); ?></td>
+                        <td>
+                            <?php if ($post['status'] == 1): ?>
+                            <span>Approved</span>
+                            <form method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                            </form>
+                            <?php elseif ($post['status'] == -1): ?>
+                            <span>Not approved</span>
+                            <form method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                            </form>
+                            <?php else: ?>
+                            <form method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                <button type="submit" name="approve" class="btn btn-success">Approved</button>
+                            </form>
+                            <form method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                <button type="submit" name="unapprove" class="btn btn-warning">Not approved</button>
+                            </form>
+                            <form method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                                <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                            </form>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <a href="view_post.php?id=<?php echo $post['id']; ?>" class="btn btn-info">View details</a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-    
+
     </div>
 
     <?php include '../includes/footer.php' ?>
 
 
-    
+
 </body>
 
 </html>

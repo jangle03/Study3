@@ -1,0 +1,24 @@
+table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        border: 1px solid #aaa;
+        text-align: left;
+    }
+
+    .pending {
+        color: orange;
+    }
+
+    .approved {
+        color: green;
+    }
+
+    .other-approved {
+        color: blue;
+    }

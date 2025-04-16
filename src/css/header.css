@@ -43,7 +43,6 @@ header {
     align-items: center;
     flex-wrap: wrap;
     position: sticky;
-    /* top: 0; */
 }
 
 header a {
@@ -163,7 +162,6 @@ header a {
     transform: rotate(180deg);
 }
 
-
 @media (max-width: 768px) {
     .header-menu-toggle {
         display: block;
@@ -197,13 +195,13 @@ header a {
     }
 
     .header-links a:hover {
-        background-color: #ff6347;
+        background-color: #0047ab;
     }
 
     .header-link {
         display: flex;
         align-items: center;
-        background-color: var(--blue-light);
+        background-color: var(--blue-royal);
         color: #fff;
         padding: 12px 27px;
         margin: 5px 0;
