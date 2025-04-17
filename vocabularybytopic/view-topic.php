@@ -37,45 +37,53 @@ $words_result = $conn->query($sql_words);
 
     <div class="word-list">
         <?php if ($words_result->num_rows > 0): ?>
-        <table class="word-table">
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Vocabulary</th>
-                    <th>User</th>
-                    <th>Status</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $stt = 1;
-                    while ($row = $words_result->fetch_assoc()):
-                        // Xử lý trạng thái
-                        if ($row['trang_thai'] == 1) $trangThaiText = 'Approved';
-                        elseif ($row['trang_thai'] == -1) $trangThaiText = 'Not approved';
-                        else $trangThaiText = 'Pending approval';
-                    ?>
-                <tr>
-                    <td><?php echo $stt++; ?></td>
-                    <td><?php echo htmlspecialchars($row['tu_vung_chu_de']); ?></td>
-                    <td><?php echo htmlspecialchars($row['username']); ?></td>
-                    <td><?php echo $trangThaiText; ?></td>
-                    <td>
-                        <?php if ($row['trang_thai'] == 0): ?>
-                        <button onclick="duyetTu(<?php echo $row['id']; ?>)">Approve</button>
-                        <button onclick="khongDuyetTu(<?php echo $row['id']; ?>)">Not approved</button>
-                        <?php endif; ?>
-                        <button onclick="xemChiTiet(
-                            '<?php echo addslashes($row['tu_vung_chu_de']); ?>',
-                            '<?php echo addslashes($row['username']); ?>',
-                            '<?php echo date('d/m/Y', strtotime($row['ngay_them'])); ?>',
-                            '<?php echo addslashes($row['nghia_tieng_viet']); ?>'
-                        )">View details</button>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
+        
+
+        <table class="styled-table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Vocabulary</th>
+                <th>User</th>
+                <th>Status</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $stt = 1;
+            while ($row = $words_result->fetch_assoc()):
+                if ($row['trang_thai'] == 1) {
+                    $trangThaiText = '<span class="status-approved">Approved</span>';
+                } elseif ($row['trang_thai'] == -1) {
+                    $trangThaiText = '<span class="status-rejected">Not approved</span>';
+                } else {
+                    $trangThaiText = '<span class="status-pending">Pending</span>';
+                }
+            ?>
+            <tr>
+                <td><?php echo $stt++; ?></td>
+                <td><?php echo htmlspecialchars($row['tu_vung_chu_de']); ?></td>
+                <td><?php echo htmlspecialchars($row['username']); ?></td>
+                <td>
+                    <?php echo $trangThaiText; ?>
+                    <?php if ($row['trang_thai'] == 0): ?>
+                        <button class="btn btn-approve" onclick="duyetTu(<?php echo $row['id']; ?>)">Approve</button>
+                        <button class="btn btn-reject" onclick="khongDuyetTu(<?php echo $row['id']; ?>)">Not approved</button>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <button class="btn btn-detail" onclick="xemChiTiet(
+                        '<?php echo addslashes($row['tu_vung_chu_de']); ?>',
+                        '<?php echo addslashes($row['username']); ?>',
+                        '<?php echo date('d/m/Y', strtotime($row['ngay_them'])); ?>',
+                        '<?php echo addslashes($row['nghia_tieng_viet']); ?>'
+                    )">View details</button>
+                </td>
+            </tr>
+            <?php endwhile; ?>
+        </tbody>
         </table>
+
         <?php else: ?>
         <p>There are no words in this topic yet.</p>
         <?php endif; ?>
