@@ -91,37 +91,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <link rel="stylesheet" href="../src//css/add-sentences.css">
+    <!-- <link rel="stylesheet" href="../src//css/add-sentences.css"> -->
+    <link rel="stylesheet" href="../src/css/add.css">
+
 </head>
 
 <body>
     <?php include '../includes/header.php'; ?>
-    <h1>Add vocabulary</h1>
-    <form method="POST" action="">
-        <label for="topic_id">Topic:</label>
-        <select name="topic_id" id="topic_id" required>
-            <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['id'] . "'>" . $row['topic_name'] . "</option>";
-                }
-            } else {
-                echo "<option value=''>No topics yet.</option>";
-            }
-            ?>
-        </select>
-        <br><br>
+    <div class="container">
+    
 
-        <label for="vocabulary">Vocabulary:</label>
-        <input type="text" id="vocabulary" name="vocabulary" required>
-        <br><br>
+    <div class="content">
+        <h1>Add Vocabulary</h1>
+        <form class="blog-form" method="POST" action="">
+            <div>
+                <label for="topic_id">Topic <span style="color:red;">*</span></label>
+                <select name="topic_id" id="topic_id" required>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row['id'] . "'>" . $row['topic_name'] . "</option>";
+                        }
+                    } else {
+                        echo "<option value=''>No topics yet.</option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
-        <label for="meaning">Meaning:</label>
-        <textarea id="meaning" name="meaning" required></textarea>
-        <br><br>
+            <div>
+                <label for="vocabulary">Vocabulary <span style="color:red;">*</span></label>
+                <input type="text" id="vocabulary" name="vocabulary" required>
+            </div>
 
-        <button type="submit">ADD VOCABULARY</button>
-    </form>
+            <div>
+                <label for="meaning">Meaning <span style="color:red;">*</span></label>
+                <textarea id="meaning" name="meaning" required></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Add Vocabulary</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 
     <script>
