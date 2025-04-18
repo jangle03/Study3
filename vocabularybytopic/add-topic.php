@@ -16,39 +16,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($check_stmt->num_rows > 0) {
         $response['message'] = 'Chủ đề này đã tồn tại!';
     } else {
-        $imageName = "default.jpg"; // mặc định
+        $imageName = "default.jpg"; // Mặc định
 
         // Nếu có ảnh được tải lên
         if (isset($_FILES["vocabulary_picture"]) && $_FILES["vocabulary_picture"]["error"] == UPLOAD_ERR_OK) {
             $target_dir = "../src/images/";
-            $target_file = $target_dir . basename($_FILES["vocabulary_picture"]["name"]);
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            $imageInfo = pathinfo($_FILES["vocabulary_picture"]["name"]);
+            $imageFileType = strtolower($imageInfo['extension']);
             $allowed_types = array("jpg", "jpeg", "png", "gif");
 
             if (in_array($imageFileType, $allowed_types)) {
+                // Đổi tên file để tránh trùng
+                $newFileName = uniqid('topic_', true) . '.' . $imageFileType;
+                $target_file = $target_dir . $newFileName;
+
                 if (move_uploaded_file($_FILES["vocabulary_picture"]["tmp_name"], $target_file)) {
-                    $imageName = basename($_FILES["vocabulary_picture"]["name"]);
+                    $imageName = $newFileName;
                 } else {
-                    $response['message'] = 'There was an error uploading the image.';
+                    $response['message'] = 'Có lỗi xảy ra khi tải ảnh lên.';
                     echo json_encode($response);
                     exit;
                 }
             } else {
-                $response['message'] = 'Only JPG, JPEG, PNG and GIF image files are accepted.';
+                $response['message'] = 'Chỉ chấp nhận các định dạng ảnh JPG, JPEG, PNG và GIF.';
                 echo json_encode($response);
                 exit;
             }
         }
 
-        // Chèn dữ liệu vào cơ sở dữ liệu
+        // Chèn vào database
         $stmt = $conn->prepare("INSERT INTO topic (topic_name, vocabulary_picture) VALUES (?, ?)");
         $stmt->bind_param("ss", $topic_name, $imageName);
 
         if ($stmt->execute()) {
             $response['success'] = true;
-            $response['message'] = 'Topic added successfully!';
+            $response['message'] = 'Thêm chủ đề thành công!';
         } else {
-            $response['message'] = 'Unable to add topic to database.';
+            $response['message'] = 'Không thể thêm chủ đề vào cơ sở dữ liệu.';
         }
     }
 
@@ -57,11 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Add new topic</title>
@@ -70,108 +71,108 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
     <link rel="stylesheet" href="../src/css/add.css">
-    <!-- <link rel="stylesheet" href="../src/css/blog-add.css"> -->
-
+    <link rel="stylesheet" href="../src/css/add-topic.css">
 </head>
-
 <body>
     <?php include '../includes/header.php'; ?>
 
-    <!-- <div class="header">
-        <h1>Add new topic</h1>
-    </div>
-
-    <div class="form-container">
-        <form id="addTopicForm" action="add-topic.php" method="post" enctype="multipart/form-data">
-            <label for="topic_name">Topic name:</label>
-            <input type="text" id="topic_name" name="topic_name" required>
-
-            <label for="vocabulary_picture">Upload file:</label>
-            <input type="file" id="vocabulary_picture" name="vocabulary_picture" accept="image/*">
-
-            <button type="submit" class="add-topic-button">ADD TOPIC</button>
-        </form>
-    </div> -->
-    <div class="justify-center">
-        <!-- <div class="add-container">
-            <h1>Add New Topic</h1>
-
-            <form id="addTopicForm" action="add-topic.php" method="post" enctype="multipart/form-data">
-               
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <span class="icon">
-                            <i class="fa-solid fa-tag"></i>
-                        </span>
-                        <input type="text" id="topic_name" name="topic_name" required maxlength="150">
-                        <label for="topic_name">Topic Name<span>*</span></label>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <span class="icon">
-                            <i class="fa-solid fa-image"></i>
-                        </span>
-                        <input type="file" id="vocabulary_picture" name="vocabulary_picture" accept="image/*">
-                        <label for="vocabulary_picture">Upload Image</label>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <button type="submit">Add Topic</button>
-                </div>
-            </form>
-        </div> -->
-
-        <div class="container">
-            <div class="content">
+    <div class="container">
+        <div class="content">
+            <div class="form-header">
                 <h1>Add New Topic</h1>
-                <form class="blog-form" action="add-topic.php" method="post" enctype="multipart/form-data">
-                
-                    <div>
-                        <label for="topic_name">Topic Name <span style="color:red;">*</span></label>
-                        <input type="text" id="topic_name" name="topic_name" required>
-                    </div>
+            </div>
+            <form id="addTopicForm" class="blog-form" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="topic_name">Topic Name <span class="required">*</span></label>
+                    <input type="text" id="topic_name" name="topic_name" placeholder="Enter topic name" required>
+                </div>
 
-            
-                    <div>
-                        <label for="vocabulary_picture">Upload Image</label>
+                <div class="form-group">
+                    <label for="vocabulary_picture">Topic Image</label>
+                    <div class="file-upload-container">
                         <label class="custom-file-upload">
                             <input type="file" id="vocabulary_picture" name="vocabulary_picture" accept="image/*">
-                            <span class="upload-btn">Choose File</span>
+                            <span class="upload-btn"><i class="fas fa-cloud-upload-alt"></i> Choose Image</span>
                         </label>
-                        <div class="image-preview" id="preview-container"></div>
                     </div>
+                    <div class="image-preview" id="preview-container">
+                        <div class="no-image">
+                            <i class="fas fa-image"></i>
+                            <p>Image preview will appear here</p>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="button-group">
-                        <button type="submit" class="btn btn-primary">Add Topic</button>
-                    </div>
-                </form>
-            </div>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Topic
+                    </button>
+                </div>
+            </form>
         </div>
-
     </div>
 
-
     <?php include '../includes/footer.php'; ?>
-    <script src="../src/js/add-topic.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
+        // Preview ảnh
         document.getElementById("vocabulary_picture").addEventListener("change", function (event) {
             const previewContainer = document.getElementById("preview-container");
-            previewContainer.innerHTML = "";
             const file = event.target.files[0];
+            previewContainer.innerHTML = "";
 
             if (file) {
                 const img = document.createElement("img");
                 img.src = URL.createObjectURL(file);
                 img.onload = () => URL.revokeObjectURL(img.src);
                 previewContainer.appendChild(img);
+
+                const removeBtn = document.createElement("button");
+                removeBtn.className = "remove-image";
+                removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                removeBtn.onclick = function (e) {
+                    e.preventDefault();
+                    previewContainer.innerHTML = `
+                        <div class="no-image">
+                            <i class="fas fa-image"></i>
+                            <p>Image preview will appear here</p>
+                        </div>
+                    `;
+                    document.getElementById("vocabulary_picture").value = "";
+                };
+                previewContainer.appendChild(removeBtn);
             }
         });
-</script>
 
+        // Xử lý submit bằng JS + fetch
+        document.getElementById("addTopicForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const formData = new FormData(form);
+
+            fetch("add-topic.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                Swal.fire({
+                    icon: data.success ? 'success' : 'error',
+                    title: data.success ? 'Success!' : 'Oops...',
+                    text: data.message
+                }).then((result) => {
+                    if (data.success && result.isConfirmed) {
+                        window.location.href = 'index.php';
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                Swal.fire("Error!", "Something went wrong!", "error");
+            });
+        });
+    </script>
 </body>
-
 </html>
