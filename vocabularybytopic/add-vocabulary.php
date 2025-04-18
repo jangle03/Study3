@@ -93,6 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../src/css/root.css">
     <!-- <link rel="stylesheet" href="../src//css/add-sentences.css"> -->
     <link rel="stylesheet" href="../src/css/add.css">
+    <link rel="stylesheet" href="../src/css/add-vocabulary.css">
+
 
 </head>
 
