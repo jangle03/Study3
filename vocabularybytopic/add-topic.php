@@ -70,6 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
     <link rel="stylesheet" href="../src/css/add.css">
+    <!-- <link rel="stylesheet" href="../src/css/blog-add.css"> -->
+
 </head>
 
 <body>
@@ -91,11 +93,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div> -->
     <div class="justify-center">
-        <div class="add-container">
+        <!-- <div class="add-container">
             <h1>Add New Topic</h1>
 
             <form id="addTopicForm" action="add-topic.php" method="post" enctype="multipart/form-data">
-                <!-- Topic Name -->
+               
                 <div class="form-group">
                     <div class="input-wrapper">
                         <span class="icon">
@@ -105,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="topic_name">Topic Name<span>*</span></label>
                     </div>
                 </div>
-                <!-- Upload Image -->
+                
                 <div class="form-group">
                     <div class="input-wrapper">
                         <span class="icon">
@@ -115,18 +117,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="vocabulary_picture">Upload Image</label>
                     </div>
                 </div>
-                <!-- Submit Button -->
+                
                 <div class="form-group">
                     <button type="submit">Add Topic</button>
                 </div>
             </form>
+        </div> -->
+
+        <div class="container">
+            <div class="content">
+                <h1>Add New Topic</h1>
+                <form class="blog-form" action="add-topic.php" method="post" enctype="multipart/form-data">
+                
+                    <div>
+                        <label for="topic_name">Topic Name <span style="color:red;">*</span></label>
+                        <input type="text" id="topic_name" name="topic_name" required>
+                    </div>
+
+            
+                    <div>
+                        <label for="vocabulary_picture">Upload Image</label>
+                        <label class="custom-file-upload">
+                            <input type="file" id="vocabulary_picture" name="vocabulary_picture" accept="image/*">
+                            <span class="upload-btn">Choose File</span>
+                        </label>
+                        <div class="image-preview" id="preview-container"></div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Add Topic</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
     </div>
 
 
     <?php include '../includes/footer.php'; ?>
     <script src="../src/js/add-topic.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        document.getElementById("vocabulary_picture").addEventListener("change", function (event) {
+            const previewContainer = document.getElementById("preview-container");
+            previewContainer.innerHTML = "";
+            const file = event.target.files[0];
+
+            if (file) {
+                const img = document.createElement("img");
+                img.src = URL.createObjectURL(file);
+                img.onload = () => URL.revokeObjectURL(img.src);
+                previewContainer.appendChild(img);
+            }
+        });
+</script>
+
 </body>
 
 </html>

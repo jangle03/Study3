@@ -18,10 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (isset($_POST['add'])) {
-        $db->addBlogPost($_POST['title'], $_POST['content'], $_SESSION['user_id'], $imagePath);
-        header("Location: index.php");
+        // Kiểm tra nếu user là admin
+        $status = ($_SESSION['username'] === 'admin') ? 1 : 0;
+        $db->addBlogPost($_POST['title'], $_POST['content'], $_SESSION['user_id'], $imagePath, $status);
+         header("Location: index.php");
         exit();
-    } elseif (isset($_POST['update'])) {
+    }
+     elseif (isset($_POST['update'])) {
         $db->updateBlogPost($_POST['id'], $_POST['title'], $_POST['content'], $imagePath);
     } elseif (isset($_POST['delete'])) {
         $db->deleteBlogPost($_POST['id']);
