@@ -51,7 +51,7 @@ $avatar = !empty($author['profile_picture']) ? $author['profile_picture'] : 'def
             </ul>
         </div>
         <div class="content">
-            <p><a href="javascript:history.back()" class="btn btn-primary">Back</a></p>
+            <!-- <p><a href="javascript:history.back()" class="btn btn-primary">Back</a></p> -->
             <div class="post">
                 <div class="post-header">
                     <img src="../src/images/profile-image/<?php echo htmlspecialchars($userProfiles[$post['id_users']]['profile_picture']); ?>"
