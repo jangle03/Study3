@@ -174,3 +174,6 @@ body {
         margin-bottom: 10px;
     }
 }
+.card {
+    cursor: pointer;
+}
