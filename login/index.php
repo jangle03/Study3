@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
                 <span class="icon">
                     <i class="fas fa-user"></i>
                 </span>
-                <input type="text" id="username" name="username" required maxlength="30" placeholder="Username">
+                <input type="text" id="username" name="username" required maxlength="30" placeholder="">
                 <label for="username">Username</label>
             </div>
             <small id="username-error" style="color: red;"></small>
