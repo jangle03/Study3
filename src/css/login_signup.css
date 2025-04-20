@@ -386,11 +386,6 @@ button[type="submit"]:disabled {
     position: relative;
   }
   
-  /* Input Wrapper */
-  .input-wrapper {
-    position: relative;
-    width: 100%;
-  }
   
   /* Icons */
   .icon {
@@ -435,7 +430,7 @@ button[type="submit"]:disabled {
   
   .input-wrapper input:focus + label,
   .input-wrapper input:not(:placeholder-shown) + label {
-    transform: translateY(-28px) scale(0.85);
+    transform: translateX(-44px) translateY(-44px) scale(0.85);
     color: var(--primary-color);
   }
   
@@ -595,3 +590,6 @@ button[type="submit"]:disabled {
       padding: 14px 14px 14px 45px;
     }
   }
+
+
+  
