@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <link rel="stylesheet" href="../src/css/add-dictionary.css">
+    <link rel="stylesheet" href="../src/css/add-texts.css">
 </head>
 
 <body>
@@ -23,8 +23,8 @@
         <div class="add-container">
 
             <h1>Add New Text</h1>
-
-            <form id="wordForm" method="post">
+            <form id="textForm" method="post">
+            <!-- <form id="wordForm" method="post"> -->
                 <!-- Text title -->
                 <div class="form-group">
                     <div class="input-wrapper">

@@ -1,0 +1,137 @@
+/* Add Dictionary specific styles */
+/* .add-container {
+    background: #fff;
+    max-width: 800px;
+    margin: 3% auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+} */
+
+.add-container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 3% auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.add-container h1 {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    border-radius: 10px 10px 0 0;
+}
+
+form#textForm {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.input-wrapper input:focus,
+.input-wrapper textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    background-color: #fff;
+    outline: none;
+}
+
+.input-wrapper label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.input-wrapper span.icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 16px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #aaa;
+}
+
+/* Button styling */
+button[type="submit"] {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 200px;
+    align-self: center;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.25);
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #0069d9, #004494);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    form#textForm {
+        padding: 20px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+    }
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+}
+.button-group {
+    display: flex
+;
+    justify-content: center;
+    margin-top: 10px;
+}
