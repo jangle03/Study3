@@ -22,7 +22,10 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
-
+.feature-card>i{
+  
+    padding: 10px 10px;
+}
 .hero-section {
     background: var(--gradient-bg);
     color: white;

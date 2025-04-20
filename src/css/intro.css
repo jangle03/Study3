@@ -16,7 +16,10 @@ body {
     background-color: var(--light-color);
     color: #333;
 }
-
+.feature-card>i{
+  
+    padding: 10px 10px;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;

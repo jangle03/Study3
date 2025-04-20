@@ -63,9 +63,6 @@
                     <div class="tool-content">
                         <h3 class="tool-title">Personal Dictionary</h3>
                         <p class="tool-description">Add new vocabulary along with translations and definitions. Build your own vocabulary library for easy review.</p>
-                        <div class="tool-link">
-                            <a href="./dictionary/" class="btn-primary">Explore Dictionary</a>
-                        </div>
                     </div>
                 </div>
                 <div class="tool-card">
@@ -75,9 +72,7 @@
                     <div class="tool-content">
                         <h3 class="tool-title">Sentence Library</h3>
                         <p class="tool-description">Create and store sentences using your vocabulary. Add translations to better understand context and usage.</p>
-                        <div class="tool-link">
-                            <a href="./sentences/" class="btn-primary">View Sentences</a>
-                        </div>
+                    
                     </div>
                 </div>
                 <div class="tool-card">
@@ -87,9 +82,7 @@
                     <div class="tool-content">
                         <h3 class="tool-title">Texts & Reading</h3>
                         <p class="tool-description">Upload and translate texts for reading practice. Improve your reading comprehension and expand your vocabulary through real-world context.</p>
-                        <div class="tool-link">
-                            <a href="./texts/" class="btn-primary">View Texts</a>
-                        </div>
+                      
                     </div>
                 </div>
             </div>

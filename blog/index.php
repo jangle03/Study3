@@ -37,7 +37,7 @@
         $db = new Database();
         $posts = $db->select('blog', '*', 'WHERE status = 1');
         if (!$posts) {
-            echo "<p>Không có bài đăng nào.</p>";
+            echo "<p>There are no posts.</p>";
         }
         $userProfiles = [];
         $users = $db->select('users', 'id, username, profile_picture');

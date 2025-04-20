@@ -46,6 +46,9 @@ $words_result = $conn->query($sql_words);
 
 
     <div class="word-section"> <!-- THÊM div này để gom chung -->
+    <button onclick="window.location.href='add-vocabulary.php'" class="add-topic-button">
+            <i class="fas fa-book"></i> ADD VOCABULARY
+        </button>
     <h1 class="section-title">Vocabulary of the topic: <?php echo htmlspecialchars($topic_name); ?></h1>
 
     <div class="word-list">

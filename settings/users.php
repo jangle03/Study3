@@ -37,13 +37,13 @@ $user = $query->select('users');
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>STT</th>
+                        <th>ID</th>
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Username</th>
                         <th>Profile Image</th>
                         <th>Created At</th>
-                        <th>Thao tác</th>
+                        <th>Operation</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,9 +62,9 @@ $user = $query->select('users');
 
                             <td><?php echo htmlspecialchars($u['created_at']); ?></td>
                             <td>
-                                <a href="edit-account.php?id=<?= $u['id'] ?>" class="btn btn-success">Sửa</a>
+                                <a href="edit-account.php?id=<?= $u['id'] ?>" class="btn btn-success">Edit</a>
                                 <?php if ($u['username'] !== 'admin'): ?>
-                                    <a href="delete-account.php?id=<?= $u['id'] ?>" class="btn btn-danger">Xóa</a>
+                                    <a href="delete-account.php?id=<?= $u['id'] ?>" class="btn btn-danger">Delete</a>
                                 <?php endif; ?>
                             </td>
 
