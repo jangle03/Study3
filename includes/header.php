@@ -74,3 +74,11 @@
     </nav>
 
 </header>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const toggle = document.querySelector(".header-menu-toggle");
+    toggle.addEventListener("click", function() {
+        document.body.classList.toggle("menu-open");
+    });
+});
+</script>
