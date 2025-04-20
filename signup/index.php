@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script>
         let isEmailAvailable = false;
         let isUsernameAvailable = false;
-
+// testtest
         function validateUsernameFormat(username) {
             const usernamePattern = /^[a-zA-Z0-9_]+$/;
             return usernamePattern.test(username);
