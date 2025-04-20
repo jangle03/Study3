@@ -89,9 +89,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
-                    <input type="text" id="first_name" name="first_name" required maxlength="30">
+                    <input type="text" id="first_name" name="first_name" required maxlength="30" placeholder="">
                     <label for="first_name">First Name</label>
                 </div>
+                <small id="username-error" style="color: red;"></small>
             </div>
             <!-- Last Name -->
             <div class="form-group">
@@ -99,20 +100,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
-                    <input type="text" id="last_name" name="last_name" required maxlength="30">
-                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required maxlength="30" placeholder="">
+                    <label for="username">Last Name</label>
                 </div>
+                <small id="username-error" style="color: red;"></small>
             </div>
             <!-- Email -->
+
             <div class="form-group">
                 <div class="input-wrapper">
                     <span class="icon">
                         <i class="fa-solid fa-envelope"></i>
                     </span>
-                    <input type="email" id="email" name="email" required maxlength="100">
+                    <input type="email" id="email" name="email" required maxlength="30" placeholder="">
                     <label for="email">Email</label>
-                    <p id="email-message"></p>
                 </div>
+                <small id="email-error" style="color: red;"></small>
             </div>
             <!-- Username -->
             <div class="form-group">
@@ -120,25 +123,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
-                    <input type="text" id="username" name="username" required maxlength="30">
+                    <input type="text" id="username" name="username" required maxlength="30" placeholder="">
                     <label for="username">Username</label>
-                    <p id="username-message"></p>
                 </div>
+                <small id="username-error" style="color: red;"></small>
             </div>
             <!-- Password -->
             <div class="form-group">
                 <div class="input-wrapper">
-                    <div class="password-container">
-                        <span class="icon">
-                            <i class="fas fa-lock"></i>
-                        </span>
-                        <input type="password" id="password" name="password" required maxlength="255">
-                        <label for="password">Password</label>
-                        <button type="button" id="toggle-password" class="password-toggle">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
+                    <span class="icon">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" id="password" name="password" required maxlength="255" placeholder="">
+                    <label for="password">Password</label>
+                    <button type="button" id="toggle-password" class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
+                <small id="password-error" style="color: red;"></small>
             </div>
             <!-- Button -->
             <div class="form-group">
@@ -149,129 +151,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p>Already have an account? <a href="../login/">Login</a></p>
             </div>
         </form>
-        <!-- <div class="text-center">
-            <p>Already have an account? <a href="../login/">Login</a></p>
-        </div> -->
+
     </div>
-
     <script src="../src/js/sweetalert2.js"></script>
-
-    <script>
-        let isEmailAvailable = false;
-        let isUsernameAvailable = false;
-// testtest
-        function validateUsernameFormat(username) {
-            const usernamePattern = /^[a-zA-Z0-9_]+$/;
-            return usernamePattern.test(username);
-        }
-
-        document.getElementById('email').addEventListener('input', function() {
-            let email = this.value;
-            if (email.length > 0) {
-                fetch('check_availability.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `email=${encodeURIComponent(email)}`
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        const messageElement = document.getElementById('email-message');
-                        if (data.exists) {
-                            messageElement.textContent = 'This email exists!';
-                            isEmailAvailable = false;
-                        } else {
-                            messageElement.textContent = '';
-                            isEmailAvailable = true;
-                        }
-                    });
-            }
-        });
-
-        document.getElementById('username').addEventListener('input', function() {
-            let username = this.value;
-            const messageElement = document.getElementById('username-message');
-
-            if (!validateUsernameFormat(username)) {
-                messageElement.textContent = 'Username can only contain letters, numbers, and underscores!';
-                isUsernameAvailable = false;
-                return;
-            }
-
-            if (username.length > 0) {
-                fetch('check_availability.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `username=${encodeURIComponent(username)}`
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.exists) {
-                            messageElement.textContent = 'This username exists!';
-                            isUsernameAvailable = false;
-                        } else {
-                            messageElement.textContent = '';
-                            isUsernameAvailable = true;
-                        }
-                    });
-            } else {
-                messageElement.textContent = '';
-            }
-        });
-
-        function validateEmailFormat(email) {
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            return emailPattern.test(email);
-        }
-
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
-            let email = document.getElementById('email').value;
-            const emailMessageElement = document.getElementById('email-message');
-            let username = document.getElementById('username').value;
-            const usernameMessageElement = document.getElementById('username-message');
-
-            if (!validateEmailFormat(email)) {
-                emailMessageElement.textContent = 'Email format is incorrect!';
-                event.preventDefault();
-                return;
-            }
-
-            if (!validateUsernameFormat(username)) {
-                usernameMessageElement.textContent = 'Username can only contain letters, numbers, and underscores!';
-                event.preventDefault();
-                return;
-            }
-
-            if (isEmailAvailable === false) {
-                emailMessageElement.textContent = 'This email exists!';
-                event.preventDefault();
-            }
-
-            if (isUsernameAvailable === false) {
-                usernameMessageElement.textContent = 'This username exists!';
-                event.preventDefault();
-            }
-        });
-
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordField = document.getElementById('password');
-            const toggleIcon = this.querySelector('i');
-
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
-            }
-        });
-    </script>
-
+    <script src="../src/js/signup-index.js"></script>
 </body>
 
 </html>
