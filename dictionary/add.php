@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <link rel="stylesheet" href="../src/css/add.css">
-    <!-- <link rel="stylesheet" href="../src/css/add-sentences.css"> -->
+    <link rel="stylesheet" href="../src/css/add-dictionary.css">
+
 </head>
 
 <body>
@@ -32,17 +32,18 @@
                         <span class="icon">
                             <i class="fa-solid fa-pen-ruler"></i>
                         </span>
-                        <input type="text" id="word" name="word" required maxlength="150">
+                        <input type="text" id="word" name="word" placeholder="Enter word..." required maxlength="150">
                         <label for="word">Word<span>*</span></label>
                     </div>
-                </div>
+                 </div>
+
                 <!-- Translation -->
                 <div class="form-group">
                     <div class="input-wrapper">
                         <span class="icon">
                             <i class="fa-solid fa-circle-info"></i>
                         </span>
-                        <input type="text" id="translation" name="translation" required maxlength="150">
+                        <input type="text" id="translation" name="translation" placeholder="Enter translation..." required maxlength="150">
                         <label for="translation">Translation<span>*</span></label>
                     </div>
                 </div>
@@ -52,13 +53,16 @@
                         <span class="icon">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </span>
-                        <textarea id="definition" name="definition" maxlength="255"></textarea>
+                        <!-- <textarea id="definition" name="definition" placeholder="Enter definition..." maxlength="255"></textarea> -->
+                        <input type="text" id="definition" name="definition" placeholder="Enter definition..." required maxlength="150">
                         <label for="definition">Definition</label>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <button type="submit">Add Word</button>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Vocabulary
+                    </button>
                 </div>
             </form>
         </div>
