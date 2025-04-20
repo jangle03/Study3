@@ -39,112 +39,86 @@ if ($wordId) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <link rel="stylesheet" href="../src/css/add.css">
+    <link rel="stylesheet" href="../src/css/add-sentences.css">
+    <link rel="stylesheet" href="../src/css/add-dictionary.css">
+
 </head>
 
 <body>
-
     <?php include '../includes/header.php'; ?>
 
     <div class="justify-center">
         <div class="add-container">
-
             <h1>Add New Sentence</h1>
 
             <form id="sentenceForm" method="post">
                 <?php if ($wordId): ?>
-                <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="word">Selected Word</label>
-                        <input type="hidden" id="word" name="word_id" value="<?php echo htmlspecialchars($wordId); ?>">
-                        <select disabled>
-                            <option>
-                                <?php echo htmlspecialchars($word_name); ?>
-                            </option>
-                        </select>
-                    </div> -->
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <span class="icon">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                        </span>
-                        <div class="custom-select-wrapper">
+                        <div class="input-wrapper">
+                            <span class="icon">
+                                <i class="fa-solid fa-pen-ruler"></i>
+                            </span>
                             <select disabled>
-                                <option>
-                                    <?php echo htmlspecialchars($word_name); ?>
-                                </option>
+                                <option><?php echo htmlspecialchars($word_name); ?></option>
                             </select>
-                            <input type="hidden" id="word" name="word_id"
-                                value="<?php echo htmlspecialchars($wordId); ?>">
-                            <label for="word">Selected Word</label>
+                            <input type="hidden" id="word" name="word_id" value="<?php echo htmlspecialchars($wordId); ?>">
                         </div>
                     </div>
-                </div>
                 <?php else: ?>
-
-                <!-- Select word -->
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <span class="icon">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                        </span>
-                        <div class="custom-select-wrapper">
+                    <div class="form-group">
+                        <label for="word">Select Word <span>*</span></label>
+                        <div class="input-wrapper">
+                            <span class="icon">
+                                <i class="fa-solid fa-pen-ruler"></i>
+                            </span>
                             <select id="word" name="word_id" required>
                                 <option value="">Select a Word</option>
                                 <?php foreach ($results as $row): ?>
-                                <option value="<?php echo htmlspecialchars($row['id']); ?>">
-                                    <?php echo htmlspecialchars($row['word']); ?>
-                                </option>
+                                    <option value="<?php echo htmlspecialchars($row['id']); ?>">
+                                        <?php echo htmlspecialchars($row['word']); ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
-                            <span class="custom-select-icon">
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </span>
                         </div>
-                        <label for="word">Select Word<span>*</span></label>
                     </div>
-                </div>
                 <?php endif; ?>
 
-                <!-- <div class="form-group">
-                    <label for="sentence">Sentence<span>*</span></label>
-                    <textarea id="sentence" name="sentence" required maxlength="200"></textarea>
-                </div> -->
-                <!-- Sentences -->
                 <div class="form-group">
+                    <label for="sentence">Sentence <span>*</span></label>
                     <div class="input-wrapper">
                         <span class="icon">
                             <i class="fa-solid fa-circle-info"></i>
                         </span>
-                        <textarea id="sentence" name="sentence" required maxlength="200"></textarea>
-                        <label for="sentence">Sentence<span>*</span></label>
+                        <!-- <textarea id="sentence" name="sentence" required maxlength="200"></textarea> -->
+                        <input type="text" id="sentence" name="sentence" placeholder="Enter sentence..." required maxlength="150">
+
                     </div>
                 </div>
 
-                <!-- <div class="form-group">
-                    <label for="translation">Translation<span>*</span></label>
-                    <textarea id="translation" name="translation" required maxlength="255"></textarea>
-                </div> -->
-                <!-- Translation -->
                 <div class="form-group">
+                    <label for="translation">Translation <span>*</span></label>
                     <div class="input-wrapper">
                         <span class="icon">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </span>
-                        <textarea id="translation" name="translation" required maxlength="255"></textarea>
-                        <label for="translation">Translation<span>*</span></label>
+                        <!-- <textarea id="translation" name="translation" required maxlength="255"></textarea> -->
+                        <input type="text" id="translation" name="translation" placeholder="Enter translation..." required maxlength="150">
+
                     </div>
                 </div>
-                <!-- Button -->
-                <div class="form-group">
-                    <button type="submit">Add Sentence</button>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Vocabulary
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 
     <?php include '../includes/footer.php'; ?>
-
     <script src="../src/js/sentences-add.js"></script>
 </body>
+
 
 </html>
