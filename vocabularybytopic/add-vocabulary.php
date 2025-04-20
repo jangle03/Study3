@@ -45,15 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Kiểm tra nếu chủ đề và từ vựng không rỗng
     if (!empty($topic_id) && !empty($vocabulary) && !empty($meaning)) {
-        // Chèn từ vựng vào cơ sở dữ liệu
-        // $sql = "INSERT INTO topic_words (tu_vung_chu_de, nghia_tieng_viet, id_users, trang_thai, ngay_them, id_topic) 
-        //         VALUES (?, ?, ?, 0, NOW(), ?)";
         // Nếu là admin, đặt trạng thái đã duyệt (1), ngược lại là chờ duyệt (0)
         $is_admin = ($username === 'admin') ? 1 : 0;
 
         $sql = "INSERT INTO topic_words (tu_vung_chu_de, nghia_tieng_viet, id_users, trang_thai, ngay_them, id_topic) 
         VALUES (?, ?, ?, ?, NOW(), ?)";
-
 
         $stmt = $conn->prepare($sql);
 
@@ -62,9 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Bind các tham số vào câu lệnh
-        // $stmt->bind_param("ssis", $vocabulary, $meaning, $user_id, $topic_id);
         $stmt->bind_param("ssisi", $vocabulary, $meaning, $user_id, $is_admin, $topic_id);
-
 
         // Thực thi câu lệnh SQL
         if ($stmt->execute()) {
@@ -78,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     $response = ['success' => false, 'message' => ''];
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -91,55 +84,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <!-- <link rel="stylesheet" href="../src//css/add-sentences.css"> -->
     <link rel="stylesheet" href="../src/css/add.css">
     <link rel="stylesheet" href="../src/css/add-vocabulary.css">
-
-
 </head>
 
 <body>
     <?php include '../includes/header.php'; ?>
     <div class="container">
-    
-
-    <div class="content">
-        <h1>Add Vocabulary</h1>
-        <form class="blog-form" method="POST" action="">
-            <div>
-                <label for="topic_id">Topic <span style="color:red;">*</span></label>
-                <select name="topic_id" id="topic_id" required>
-                    <?php
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['id'] . "'>" . $row['topic_name'] . "</option>";
-                        }
-                    } else {
-                        echo "<option value=''>No topics yet.</option>";
-                    }
-                    ?>
-                </select>
+        <div class="content">
+            <div class="form-header">
+                <h1>Add Vocabulary</h1>
             </div>
+            <form class="blog-form" method="POST" action="">
+                <div class="form-group">
+                    <label for="topic_id">Topic <span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select name="topic_id" id="topic_id" required>
+                            <?php
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value='" . $row['id'] . "'>" . $row['topic_name'] . "</option>";
+                                }
+                            } else {
+                                echo "<option value=''>No topics yet.</option>";
+                            }
+                            ?>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
 
-            <div>
-                <label for="vocabulary">Vocabulary <span style="color:red;">*</span></label>
-                <input type="text" id="vocabulary" name="vocabulary" required>
-            </div>
+                <div class="form-group">
+                    <label for="vocabulary">Vocabulary <span class="required">*</span></label>
+                    <input type="text" id="vocabulary" name="vocabulary" placeholder="Enter vocabulary word" required>
+                </div>
 
-            <div>
-                <label for="meaning">Meaning <span style="color:red;">*</span></label>
-                <textarea id="meaning" name="meaning" required></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="meaning">Meaning <span class="required">*</span></label>
+                    <input type="text" id="meaning" name="meaning" placeholder="Enter word meaning" required>
+                </div>
 
-            <div class="button-group">
-                <button type="submit" class="btn btn-primary">Add Vocabulary</button>
-            </div>
-        </form>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Vocabulary
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     <?php if ($response['message'] != ''): ?>
     // Hiển thị thông báo nếu có và chuyển hướng nếu thành công
@@ -154,10 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     });
     <?php endif; ?>
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <?php include '../includes/footer.php'; ?>
-
 </body>
 
 </html>

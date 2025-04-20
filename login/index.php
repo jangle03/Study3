@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
                 <span class="icon">
                     <i class="fas fa-user"></i>
                 </span>
-                <input type="text" id="username" name="username" required maxlength="30" placeholder="Username">
+                <input type="text" id="username" name="username" required maxlength="30" placeholder="">
                 <label for="username">Username</label>
             </div>
             <small id="username-error" style="color: red;"></small>
@@ -110,46 +110,19 @@ if (isset($_POST['submit'])) {
 
         <div class="form-group">
             <div class="input-wrapper">
-                <div class="password-container">
-                    <span class="icon">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                    <input type="password" id="password" name="password" required maxlength="255">
-                    <label for="password">Password</label>
-                    <button type="button" id="toggle-password" class="password-toggle">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- <div class="form-group">
-            <div class="password-container">
                 <span class="icon">
                     <i class="fas fa-lock"></i>
                 </span>
-                <input type="password" id="password" name="password" required maxlength="255">
+                <input type="password" id="password" name="password" required maxlength="255" placeholder="">
                 <label for="password">Password</label>
                 <button type="button" id="toggle-password" class="password-toggle">
                     <i class="fas fa-eye"></i>
                 </button>
             </div>
-        </div> -->
+            <small id="password-error" style="color: red;"></small>
+        </div>
 
-
-        <!-- <div class="form-group">
-            <div class="password-container">
-                <input type="password" id="password" name="password" required maxlength="255">
-                <label for="password">Password</label>
-                <button type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></button>
-            </div>
-        </div> -->
-
-        <!-- <div class="form-group">
-            <button type="submit" name="submit" id="submit" disabled>
-                <i class="fas fa-sign-in-alt"></i> Login
-            </button>
-        </div> -->
+     
         <div class="form-group">
             <button type="submit" name="submit" id="submit" disabled>Login</button>
         </div>
@@ -158,48 +131,7 @@ if (isset($_POST['submit'])) {
             <p>Don't have an account? <a href="../signup/">Sign Up</a></p>
         </div>
     </form>
-
-    <!-- <div class="text-center">
-        <p>Don't have an account? <a href="../signup/">Sign Up</a></p>
-    </div> -->
-
 </div>
-
 <script src="../src/js/sweetalert2.js"></script>
-<script>
-    const usernameField = document.getElementById('username');
-    const usernameError = document.getElementById('username-error');
-    const submitButton = document.getElementById('submit');
-
-    function validateForm() {
-        const username = usernameField.value;
-        const usernamePattern = /^[a-zA-Z0-9_]+$/;
-        if (!usernamePattern.test(username)) {
-            usernameError.textContent = "Username can only contain letters, numbers, and underscores!";
-            submitButton.disabled = true;
-        } else {
-            usernameError.textContent = "";
-            submitButton.disabled = false;
-        }
-    }
-
-    usernameField.addEventListener('input', validateForm);
-
-    document.getElementById('toggle-password').addEventListener('click', function() {
-        const passwordField = document.getElementById('password');
-        const toggleIcon = this.querySelector('i');
-
-        if (passwordField.type === 'password') {
-            passwordField.type = 'text';
-            toggleIcon.classList.remove('fa-eye');
-            toggleIcon.classList.add('fa-eye-slash');
-        } else {
-            passwordField.type = 'password';
-            toggleIcon.classList.remove('fa-eye-slash');
-            toggleIcon.classList.add('fa-eye');
-        }
-    });
-</script>
-
-
+<script src="../src/js/login-index.js"></script>
 </html>

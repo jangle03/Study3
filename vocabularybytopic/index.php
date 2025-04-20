@@ -71,39 +71,53 @@ $result = $conn->query($sql);
 
 
     <div class="card-list">
-        <?php if ($result->num_rows > 0): ?>
+    <?php if ($result->num_rows > 0): ?>
         <?php while ($row = $result->fetch_assoc()): ?>
-        <div class="card" id="topic-<?php echo $row['id']; ?>">
-            <img src="../src/images/<?php echo htmlspecialchars($row['vocabulary_picture']); ?>"
-                alt="<?php echo htmlspecialchars($row['topic_name']); ?>">
-            <div class="card-content">
-                <h2><?php echo htmlspecialchars($row['topic_name']); ?></h2>
+            <div class="card" id="topic-<?php echo $row['id']; ?>"
+                 onclick="handleCardClick(event, '<?php echo $isAdmin ? 'view-topic.php' : 'vocabulary_list.php'; ?>?id=<?php echo $row['id']; ?>')">
+                <img src="../src/images/<?php echo htmlspecialchars($row['vocabulary_picture']); ?>"
+                    alt="<?php echo htmlspecialchars($row['topic_name']); ?>">
+                <div class="card-content">
+                    <h2><?php echo htmlspecialchars($row['topic_name']); ?></h2>
 
-                <div class="icon-actions">
-                    <button title="View details"
-                        onclick="window.location.href='<?php echo $isAdmin ? 'view-topic.php' : 'vocabulary_list.php'; ?>?id=<?php echo $row['id']; ?>'">
-                        <i class="fas fa-eye"></i>
-                    </button>
+                    <div class="icon-actions">
+                        <button title="View details"
+                            onclick="window.location.href='<?php echo $isAdmin ? 'view-topic.php' : 'vocabulary_list.php'; ?>?id=<?php echo $row['id']; ?>'">
+                            <i class="fas fa-eye"></i>
+                        </button>
 
-                    <?php if ($isAdmin): ?>
-                    <button title="Delete topic" onclick="deleteTopic(<?php echo $row['id']; ?>)">
-                        <i class="fas fa-trash-alt" style="color: red;"></i>
-                    </button>
-                    <?php endif; ?>
+                        <?php if ($isAdmin): ?>
+                        <button title="Delete topic" onclick="deleteTopic(<?php echo $row['id']; ?>)">
+                            <i class="fas fa-trash-alt" style="color: red;"></i>
+                        </button>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php endwhile; ?>
-        <?php else: ?>
+    <?php else: ?>
         <p>No topics found.</p>
-        <?php endif; ?>
-    </div>
+    <?php endif; ?>
+</div>
+
 
     <?php include '../includes/footer.php'; ?>
 
     <script src="../src/js/delete-topic.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+function handleCardClick(event, url) {
+    // Nếu phần được bấm là nút xóa hoặc bên trong nó, thì không làm gì cả
+    if (event.target.closest('button') && event.target.closest('button').title === "Delete topic") {
+        return;
+    }
+
+    // Chuyển hướng nếu không phải nút xóa
+    window.location.href = url;
+}
+</script>
+
 </body>
 
 </html>

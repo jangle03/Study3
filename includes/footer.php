@@ -4,12 +4,11 @@
 <link rel="stylesheet" href="../src/css/footer.css">
 <footer>
     <div class="footer">
-        <p>&copy; 2024 Dictionary Portal. All Rights Reserved.</p>
+        <p>&copy; 2025 KhanhHuyen&ChauGiang&HoangHuyen.</p>
         <p>Follow us on
-            <a href="https://iqbolshoh.uz" target="_blank" class="social-icon"><i class="fas fa-globe"></i></a>
-            <a href="https://t.me/iqbolshoh_777" target="_blank" class="social-icon"><i class="fab fa-telegram"></i></a>
-            <a href="https://www.instagram.com/iqbolshoh_777" target="_blank" class="social-icon"><i
-                    class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/lh.khuyen2412" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100048727868280" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.facebook.com/chaugiang.22" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
         </p>
     </div>
 </footer>
