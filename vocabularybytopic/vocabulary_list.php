@@ -49,7 +49,6 @@ $result_approved_words = $stmt_approved_words->get_result();
 
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <title>Chủ đề: <?= htmlspecialchars($topic_name) ?></title>
@@ -57,95 +56,86 @@ $result_approved_words = $stmt_approved_words->get_result();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/css/root.css">
-    <link rel="stylesheet" href="../src/css/post_management.css">
     <link rel="stylesheet" href="../src/css/vocabulary_list.css">
-
 </head>
-
 <body>
     <?php include '../includes/header.php'; ?>
-
     <div class="container">
-    <div class="back-link">
-            <a href="index.php"><i class="fas fa-arrow-left"></i> Quay lại</a>
-        </div>
-        <h2>All vocabulary of the topic: <span class="highlight"><?= htmlspecialchars($topic_name) ?></span></h2>
+        <div class="topic-card">
+            <h2 class="center-title">All vocabulary of the topic: <span class="highlight"><?= htmlspecialchars($topic_name) ?></span></h2>
+            
+            <div class="table-row">
+                <!-- Bảng của bạn -->
+                <div class="table-section">
+                    <h3 class="card-title">Your vocabulary</h3>
+                    <div class="table-wrapper">
+                        <table class="table styled-table">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Vocabulary</th>
+                                    <th>Meaning</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($result_user_words->num_rows > 0): ?>
+                                    <?php $stt = 1; while ($row = $result_user_words->fetch_assoc()): ?>
+                                        <?php
+                                        $status = $row['trang_thai'] == 1 ? "Approved" : ($row['trang_thai'] == -1 ? "Not approved" : "Pending");
+                                        $class = $row['trang_thai'] == 1 ? "approved" : ($row['trang_thai'] == -1 ? "rejected" : "pending");
+                                        ?>
+                                        <tr>
+                                            <td><?= $stt++ ?></td>
+                                            <td><?= htmlspecialchars($row['tu_vung_chu_de']) ?></td>
+                                            <td><?= htmlspecialchars($row['nghia_tieng_viet']) ?></td>
+                                            <td><span class="status-tag <?= $class ?>"><?= $status ?></span></td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <tr><td colspan="4" style="text-align:center; color: red;">You haven't added any vocabulary yet.</td></tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-        <div class="card">
-            <h3 class="card-title">Your vocabulary</h3>
-            <?php if ($result_user_words->num_rows > 0): ?>
-            <div class="table-wrapper">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Vocabulary</th>
-                            <th>Meaning</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $stt = 1;
-                        while ($row = $result_user_words->fetch_assoc()):
-                            $status = $row['trang_thai'] == 1 ? "Đã duyệt" : ($row['trang_thai'] == -1 ? "Not approved" : "Pending approval");
-                            $class = $row['trang_thai'] == 1 ? "approved" : ($row['trang_thai'] == -1 ? "pending" : "pending");
-                        ?>
-                        <tr>
-                            <td><?= $stt++ ?></td>
-                            <td><?= htmlspecialchars($row['tu_vung_chu_de']) ?></td>
-                            <td><?= htmlspecialchars($row['nghia_tieng_viet']) ?></td>
-                            <td><span class="status-tag <?= $class ?>"><?= $status ?></span></td>
-                        </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
+                <!-- Bảng từ được duyệt -->
+                <div class="table-section">
+                    <h3 class="card-title">Vocabulary approved by other users</h3>
+                    <div class="table-wrapper">
+                        <table class="table styled-table">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Vocabulary</th>
+                                    <th>User</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($result_approved_words->num_rows > 0): ?>
+                                    <?php $stt = 1; while ($row = $result_approved_words->fetch_assoc()): ?>
+                                        <tr>
+                                            <td><?= $stt++ ?></td>
+                                            <td><?= htmlspecialchars($row['tu_vung_chu_de']) ?></td>
+                                            <td><?= htmlspecialchars($row['username']) ?></td>
+                                            <td><?= htmlspecialchars($row['nghia_tieng_viet']) ?></td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <tr><td colspan="4" style="text-align:center; color: red;">No approved vocabulary from others yet.</td></tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <?php else: ?>
-                <p class="no-data">You have not added any vocabulary to this topic.</p>
-            <?php endif; ?>
         </div>
-
-        <div class="card">
-            <h3 class="card-title">Vocabulary approved by other users</h3>
-            <?php if ($result_approved_words->num_rows > 0): ?>
-            <div class="table-wrapper">
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th>STT</th>
-                        <th>Vocabulary</th>
-                        <th>User</th>
-                        <th>Meaning</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $stt = 1;
-                        while ($row = $result_approved_words->fetch_assoc()):
-                        ?>
-                        <tr>
-                            <td><?= $stt++ ?></td>
-                            <td><?= htmlspecialchars($row['tu_vung_chu_de']) ?></td>
-                            <td><?= htmlspecialchars($row['username']) ?></td>
-                            <td><?= htmlspecialchars($row['nghia_tieng_viet']) ?></td>
-                        </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-            </div>
-            <?php else: ?>
-                <p>There are no approved vocabulary from other users for this topic yet.</p>
-
-            <?php endif; ?>
-        </div>
-
-        
     </div>
 
     <?php include '../includes/footer.php'; ?>
 </body>
-
 </html>
 
 <?php $conn->close(); ?>
