@@ -30,7 +30,7 @@
             </ul>
     </div>
     <div class="content">
-        <h2>Bản tin</h2>
+        <!-- <h2>Bản tin</h2> -->
         
         <?php
         require_once '../config.php';
