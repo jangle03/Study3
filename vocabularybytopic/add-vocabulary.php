@@ -1,7 +1,8 @@
 <?php
 session_start();
+$conn = new mysqli("160-191-244-99.cprapid.com", "aerinidv_khanhhuyen", "khanhhuyen2412", "aerinidv_english");
 
-$conn = new mysqli("localhost", "root", "", "aerinidv_english");
+// $conn = new mysqli("localhost", "root", "", "aerinidv_english");
 $conn->set_charset("utf8");
 
 if ($conn->connect_error) {
