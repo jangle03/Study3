@@ -162,7 +162,11 @@
     width: 1.5rem;
     text-align: center;
   }
-  
+  a,
+a:hover {
+    text-decoration: none !important;
+}
+
   /* Responsive styles */
   @media (max-width: 1024px) {
     .header-links {
